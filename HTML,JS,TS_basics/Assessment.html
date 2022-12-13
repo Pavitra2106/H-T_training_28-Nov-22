@@ -1,0 +1,137 @@
+<Html>
+    <head> 
+    <title>
+    Registration Page
+    </title>
+    </head>
+    <style>
+        .center{
+            
+            background-color: white;
+            height: 400px;
+            width: 43%;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-right: 350px;
+            margin-left: 350px;
+        }
+        .bounderyline{
+            margin-right: 2%;
+            margin-left: 2%;
+        }
+        
+        body{
+            background-color: blue;
+        }
+           .pagename{text-align : left;
+        }
+
+        div.wrapper2 {margin-top: 15%;
+                    }
+        div.left {float: left;
+            width: 33%;
+        }
+        div.mid {float: left;
+            width:33%;
+        }     
+        div.right {float: right;
+            width: 33%;
+        }
+        .button{
+            text-align : center;
+            display: block;
+            width: 27%;
+            height: 15%;
+            border: none;
+  background-color: blue;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+       }
+
+    </style>
+        <script src="Assessment.js"></script>
+    <body>   
+    <form name="myForm">
+    <div class ="center">
+    <div class ="bounderyline">
+        
+        <div class ="pagename">
+        <label><B><h2>Registration</h2></B></label>
+       </div>
+ <div class="Peronal">
+    <label><h4>Peronal Details</h4></label>
+      <div class="wrapper">
+  <div class= "left">
+    <label> Full Name </label> <br>
+    <input type="text" name="firstname" placeholder ="Enter Your Name "size="15"/>
+  </div>
+  <div class ="mid">
+    <label> Date of Birth  </label><br>
+    <input type="date" name="dob" placeholder ="Enter Your DOB" size="15"/>   
+  </div>
+  <div class ="right">
+    <label> Email  </label>
+    <input type="text" name="email" placeholder ="Enter Your Email" size="15"/>
+  </div>
+</div>
+
+<div class="wrapper2">
+<div class= "right">
+    <label> Mobile number  </label><br>
+    <input type="text" name="mobNumber"   placeholder ="Enter Mobile number" size="15"/> 
+</div>
+<div class ="left">
+    <label>Gender</label><br>
+    <select id="gender">
+        <option value="blank">----</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+</div>
+<div class ="left">
+    <label> Occupation </label><br>
+    <input type="text" name="occupation"  placeholder ="Enter Your Occupation"  size="15"/>
+</div>
+  </div>
+</div>
+<br><br>
+<div class="Identity">
+    <label><b><h4>Identity Details</h4></b></label>
+    <div class="wrapper">
+    <div class= "left">
+        <label> ID Type </label><br>
+        <input type="text" name="id" placeholder ="Enter ID Type" size="15"/> 
+    </div>
+    <div class ="mid">
+        <label> ID Number </label> <br>
+        <input type="text" name="idno" placeholder ="Enter ID Number" size="15"/> 
+    </div>
+    <div class ="right">
+        <label> Issue Authority  </label> 
+        <input type="text" name="issueAuth" placeholder ="Enter Issue Authority" size="15"/>
+    </div>
+</div>
+<div class="wrapper2">
+    <div class= "left">
+        <label> Issue Date  </label><br>
+        <input type="date" name="issueDate"  placeholder ="Enter Id Issue Date" size="15"/>
+    </div>
+    <div class ="mid">
+        <label>Issue State  </label><br>
+        <input type="text" name="issueState"  placeholder ="Enter Id Issue State"  size="15"/> 
+    </div>
+    <div class ="right">
+        <label> Expiry Date </label> 
+        <input type="date" name="expriydate" placeholder ="Enter Id Expiry Date" size="15"/>   
+
+    </div>
+</div>
+</div >
+ <button class="button"  onclick ="myfuction();">Next </button>
+</div>
+</div>
+</body>
+</Html>
+    
