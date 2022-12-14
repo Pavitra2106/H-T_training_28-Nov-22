@@ -12,6 +12,15 @@ public class RefDemo {
 		
 		IWork iWorks = Project ::projectProgress;
 		iWorks.doProject();
+		
+		
+//		Runnable runnable = Project::threadTask;
+//		Thread t1 =new Thread(runnable);
+//		//t1.start();
+//		
+		Runnable runnable1 = Project::oddNum;
+		Thread t2 =new Thread(runnable1);
+		t2.start();
 	}
 	
 
