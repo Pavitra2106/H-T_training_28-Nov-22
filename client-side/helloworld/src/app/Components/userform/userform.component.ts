@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import User from 'src/app/Entity/User';
 
 @Component({
   selector: 'app-userform',
@@ -13,10 +14,12 @@ age=0;
 gender: String ='Male';
 email:String = '';
 
+user: User = new User ();
+
 save(){
 
-  console.log('Hello ' + this.Firstname +" "+this.Lastname);
-  console.log('your email ' + this.email);
+  console.log('Hello ' + this.user.Firstname +" "+this.user.Lastname);
+  console.log('your email ' + this.user.email);
 }
   constructor() { }
 
