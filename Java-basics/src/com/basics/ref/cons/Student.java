@@ -2,7 +2,7 @@ package com.basics.ref.cons;
 
 public class Student {
 	
-	public Student() {
+	public Student() { // this constructor
 		System.out.println("create object of the student class");
 		
 	}

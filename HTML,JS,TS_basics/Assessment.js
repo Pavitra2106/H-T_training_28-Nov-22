@@ -61,5 +61,7 @@
        alert("Expriy Date must be filled out");
        return false;
      }
+
+     console.log(x);
      window.location.href="ThankYou.html";
  }

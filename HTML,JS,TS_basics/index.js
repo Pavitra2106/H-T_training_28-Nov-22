@@ -117,17 +117,19 @@ class Car{
 
      let a = 100;
      function addnum(){
-a=220;
-let b = 100;
-console.log(a+b);
-
+         a=220;
+       let b = 100;
+       console.log(a+b);
      }
+
      addnum();
      console.log(a+1000);  
 
      function addnum1(){
          const num2 =222;
-         
+        // num2=120; we cna assing value to const variable again
+        console.log(num2);
      }
+     addnum1();
     
 
