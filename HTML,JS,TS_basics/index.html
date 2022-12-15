@@ -1,15 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn JS</title>
 </head>
-<body>
-    <h1>JS Learning Training</h1>
-    <script src="index.js">
 
-    </script>
+<body style="background-color:#19DAF8">
+    <h1 style="border-style: double; border-color: red ;text-align: center;
+    background-color:#FEFEFE"
+    >JS Learning Training</h1>
+    <script src="index.js"></script>
+
+    <br>
+    <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla consequuntur minus,
+            consectetur non facere, ducimus quae exercitationem tempore deserunt dolorem iure,
+            dolorum facilis rerum consequatur natus animi cupiditate ipsa tempora!</p>
+    </div>
+    <div>
+        <h2 style= "border-style: solid; border-color: black ;text-align: center; color: turquoise;
+        background-color:#FEFEFE">User Registration</h2>
+
+        <label for ="firstname">FirstName</label>
+        <br>
+        <input style="margin-bottom: 5px; margin-left: 15; margin-top: 5px;"
+         type="text" id="firstname" placeholder="Enter you First Name">
+         <br>
+         <label for ="lastname">LastName</label>
+         <br>
+         <input style="margin-bottom: 5px; margin-left: 15; margin-top: 5px;"
+          type="text" id="lastname" placeholder="Enter you Last Name">
+          <br>
+          <label for ="email">Email</label>
+          <br>
+          <input style="margin-bottom: 5px; margin-left: 15; margin-top: 5px;"
+           type="text" id="email" placeholder="Enter you Email">
+           <br>
+           <label for ="dob">Date of Birth</label>
+           <br>
+           <input style="margin-bottom: 5px; margin-left: 15; margin-top: 5px;"
+            type="date" id="dob">
+            <br>
+            <label style="margin-left: 10";for ="gender">Gernder</label>
+            <br>
+            <input style="margin-bottom: 2px; margin-left: 10; margin-top: 2px;"
+           type="radio" id="gender" name="gender" id="gender"> Male
+           <br>
+           <input style="margin-bottom: 2px; margin-left: 10; margin-top: 2px;"
+           type="radio" id="gender" name="gender" id="gender"> Female
+           <br>
+           <input style="margin-bottom: 2px; margin-left: 10; margin-top: 2px;"
+           type="radio" id="gender" name="gender" id="gender"> Other
+           <br>
+           <label style="margin-left: 10";for ="gender">Choose Your Language</label>
+           <br>
+           <input style="margin-bottom: 2px; margin-left: 10;" type="checkbox" id="lang" value="java"> Java
+           <input style="margin-bottom: 2px; margin-left: 10; "type="checkbox" id="lang" value="Javascript"> Javascript
+           <input style="margin-bottom: 2px; margin-left: 10; " type="checkbox" id="lang" value="php"> PHP
+           <br>
+           <button onclick="firstSubmit()" type="submit">Submit</button>
+           <a href="ThankYou.html">NextPage</a>
+    </div>
+
 </body>
+
 </html>

@@ -131,5 +131,9 @@ class Car{
         console.log(num2);
      }
      addnum1();
+
+     function firstSubmit(){
+         alert("Submit Function")
+     }
     
 
