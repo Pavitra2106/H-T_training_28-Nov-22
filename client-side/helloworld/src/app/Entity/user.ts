@@ -1,7 +1,7 @@
 export default class User{
-Firstname: String  ='';
-Lastname : String ='';
+firstname: String  ='';
+lastname : String ='';
 age=0;
-gender: String ='Male';
+gender: String ='';
 email:String = '';
 }
