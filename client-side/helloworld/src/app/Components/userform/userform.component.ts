@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscriber } from 'rxjs';
-import User from 'src/app/Entity/User';
+import User from 'src/app/Entity/user';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({

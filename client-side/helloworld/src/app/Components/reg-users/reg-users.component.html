@@ -1,0 +1,17 @@
+<h1 class="display-2"
+  style="text-align: center; border-color: white; border-style: double; background-color: #0d6efd; color: white; font-weight: 600;">
+  Registered Users</h1>
+
+<ol Style ="padding-left: 100px; padding-right: 100px; padding-top: 50px;"
+ class="list-group list-group-numbered">
+  <li *ngFor="let u of users, index as i" class="list-group-item d-flex justify-content-between
+   align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{u.firstname}}</div>
+  {{u.email}}
+    </div>
+    <button (click)="deleteRow(u,i)" type="button" class="btn btn-outline-danger">Delete</button>
+  </li>
+  <button (click)="sort()" style="margin-left:1225px;
+  margin-top: 20px;" class="button" class="btn btn-outline-danger">Sort</button>
+</ol>

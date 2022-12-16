@@ -12,13 +12,19 @@ import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { AboutComponent } from './Components/about/about.component';
 import {HttpClientModule} from '@angular/common/http';
+import { RegUsersComponent } from './Components/reg-users/reg-users.component';
+import { PipesComponent } from './Components/pipes/pipes.component';
+import { EllipsisPipe } from './Pipe/ellipsis.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UserformComponent,
     NavbarComponent,
-    AboutComponent
+    AboutComponent,
+    RegUsersComponent,
+    PipesComponent,
+    EllipsisPipe,
   ],
   imports: [
     BrowserModule,
