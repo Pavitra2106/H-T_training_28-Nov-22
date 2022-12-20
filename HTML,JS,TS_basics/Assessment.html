@@ -24,10 +24,8 @@
             background-color: blue;
         }
            .pagename{text-align : left;
-        }
-
-        div.wrapper2 {margin-top: 15%;
-                    }
+           }
+        div.wrapper2 {margin-top: 15%;}
         div.left {float: left;
             width: 33%;
         }
@@ -65,22 +63,22 @@
       <div class="wrapper">
   <div class= "left">
     <label> Full Name </label> <br>
-    <input type="text" name="firstname" placeholder ="Enter Your Name "size="15"/>
+    <input type="text" name="firstname" id="firstname" placeholder ="Enter Your Name "size="15"/>
   </div>
   <div class ="mid">
     <label> Date of Birth  </label><br>
-    <input type="date" name="dob" placeholder ="Enter Your DOB" size="15"/>   
+    <input type="date" name="dob" id="dob" placeholder ="Enter Your DOB" size="15"/>   
   </div>
   <div class ="right">
     <label> Email  </label>
-    <input type="text" name="email" placeholder ="Enter Your Email" size="15"/>
+    <input type="text" name="email" id="email" placeholder ="Enter Your Email" size="15"/>
   </div>
 </div>
 
 <div class="wrapper2">
 <div class= "right">
     <label> Mobile number  </label><br>
-    <input type="text" name="mobNumber"   placeholder ="Enter Mobile number" size="15"/> 
+    <input type="text" name="mobNumber" id="mobNumber"  placeholder ="Enter Mobile number" size="15"/> 
 </div>
 <div class ="left">
     <label>Gender</label><br>
@@ -92,7 +90,7 @@
 </div>
 <div class ="left">
     <label> Occupation </label><br>
-    <input type="text" name="occupation"  placeholder ="Enter Your Occupation"  size="15"/>
+    <input type="text" name="occupation" id="occupation"  placeholder ="Enter Your Occupation"  size="15"/>
 </div>
   </div>
 </div>
@@ -102,34 +100,36 @@
     <div class="wrapper">
     <div class= "left">
         <label> ID Type </label><br>
-        <input type="text" name="id" placeholder ="Enter ID Type" size="15"/> 
+        <input type="text" name="id" id="id" placeholder ="Enter ID Type" size="15"/> 
     </div>
     <div class ="mid">
         <label> ID Number </label> <br>
-        <input type="text" name="idno" placeholder ="Enter ID Number" size="15"/> 
+        <input type="text" name="idno" id="idno" placeholder ="Enter ID Number" size="15"/> 
     </div>
     <div class ="right">
         <label> Issue Authority  </label> 
-        <input type="text" name="issueAuth" placeholder ="Enter Issue Authority" size="15"/>
+        <input type="text" name="issueAuth"  id ="issueAuth" placeholder ="Enter Issue Authority" size="15"/>
     </div>
 </div>
 <div class="wrapper2">
     <div class= "left">
         <label> Issue Date  </label><br>
-        <input type="date" name="issueDate"  placeholder ="Enter Id Issue Date" size="15"/>
+        <input type="date" name="issueDate" id ="issueDate"  placeholder ="Enter Id Issue Date" size="15"/>
     </div>
     <div class ="mid">
         <label>Issue State  </label><br>
-        <input type="text" name="issueState"  placeholder ="Enter Id Issue State"  size="15"/> 
+        <input type="text" name="issueState" id ="issueState" placeholder ="Enter Id Issue State"  size="15"/> 
     </div>
-    <div class ="right">
+    <div class ="right" >
         <label> Expiry Date </label> 
-        <input type="date" name="expriydate" placeholder ="Enter Id Expiry Date" size="15"/>   
+        <input type="date" name="expriydate" id ="expriydate" placeholder ="Enter Id Expiry Date" size="15"/>   
 
     </div>
 </div>
 </div >
- <button class="button"  onclick ="myfuction();">Next </button>
+<div style="margin-top: 10px;">
+ <button  class="button"  onclick ="myfuction();">Next </button>
+</div>
 </div>
 </div>
 </body>

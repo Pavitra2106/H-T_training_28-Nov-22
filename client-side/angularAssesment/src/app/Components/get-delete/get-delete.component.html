@@ -1,0 +1,15 @@
+<h3 class="display-8"
+  style="text-align: center; border-color: white; border-style: 
+  double; background-color: #0d6efd; color: white;margin-top: 0px; margin-left: 10px; margin-right: 10px;">
+  All Books</h3>
+<ol Style ="padding-left: 100px; padding-right: 100px; padding-top: 5px;"
+ class="list-group list-group-numbered">
+  <li *ngFor="let u of librarys, index as i" class="list-group-item d-flex justify-content-between
+   align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{u.bookName}}</div>
+      {{u.bookAuthor}}
+    </div>
+    <button (click)="deleteRow(u,i)" type="button" class="btn btn-outline-danger">Delete</button>
+  </li>
+</ol>

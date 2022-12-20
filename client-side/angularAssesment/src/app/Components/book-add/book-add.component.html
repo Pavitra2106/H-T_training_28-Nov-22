@@ -1,0 +1,60 @@
+<div style="background-image: 
+url('https://americanlibrariesmagazine.org/wp-content/uploads/2020/03/covid-clean2.jpg');
+margin-left: 10px; margin-right: 10px;">
+<div style="text-align: center; margin-left: 450px; margin-right: 450px; background-color: aqua;">
+<h2 style="text-align: center; background-color: brown;" >Add New Book</h2>
+<form class="row gy-1 gx-1 align-items-center">
+    <div class="row g-2">
+      <label for="inputauthor" style="color: red;"
+       class="col-sm-5 col-form-label">Book Name</label>
+      <div class="col-md-6">
+        <input [(ngModel)]="library.bookName" name="bookName" 
+        type="bookName" class="form-control" id="bookName" >
+      </div>
+    </div>
+    <div class="row g-2">
+      <label for="inputauthor" style="color: red;"class="col-sm-5 col-form-label">Book Author</label>
+      <div class="col-md-6">
+        <input  [(ngModel)]="library.bookAuthor" name="bookAuthor" type="bookAuthor" 
+        class="form-control" id="bookAuthor">
+      </div>
+    </div>
+    <div class="row g-2">
+      <label for="inputprice"style="color: red;" class="col-sm-5 col-form-label">Book Price</label>
+      <div class="col-md-6">
+        <input [(ngModel)]="library.bookPrice" name="bookPrice" type="bookPrice" class="form-control" id="bookPrice">
+      </div>
+    </div>
+    <div class="row g-2">
+      <label for="inputgenre" style="color: red;"class="col-sm-5 col-form-label">Book Genre</label>
+      <div class="col-md-6">
+        <input [(ngModel)]="library.bookGenre" name="bookGenre" type="bookGenre" class="form-control" id="bookGenre">
+      </div>
+    </div>
+  <fieldset class="row g-2">
+    <legend class="col-form-label col-sm-7 pt-0" style="color: red;">Borrowed Status</legend>
+    <div class="col-sm-3">
+      <div class="form-check">
+        <input [(ngModel)]="library.borrowedStatus"  name="borrowedStatus"  class="form-check-input" type="radio" 
+        name="borrowedStatus" 
+        id="gridRadios1" value="true" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Borrowed
+        </label>
+      </div>
+      <div class="form-check">
+        <input  [(ngModel)]="library.borrowedStatus"  class="form-check-input" 
+        type="radio" name="borrowedStatus" name="borrowedStatus" id="gridRadios2" 
+        value="false">
+        <label class="form-check-label" for="gridRadios2">
+          Available
+        </label>
+      </div>
+    </div>
+  </fieldset>
+    <div class="col-auto" style="margin-left: 5%; margin-bottom: 4px;">
+    <button (click)="save()" type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  </form>
+</div>
+</div>
