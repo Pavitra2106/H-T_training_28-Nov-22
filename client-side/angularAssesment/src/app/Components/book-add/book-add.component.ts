@@ -42,11 +42,17 @@ export class BookAddComponent implements OnInit {
       (response: any) => {
         console.log(response);
         alert("Book Added Successfully");
-      }, function (error) {
+       }, function (error) {
         console.log(error);
         alert("something went wrong, Please try again!")
       })
+     this.library.bookName='';
+     this.library.bookAuthor='';
+     this.library.bookPrice=0;
+     this.library.bookGenre='';
+     this.library.borrowedStatus=false;
   }
+
   constructor(private libraryService: LibraryService) { }
 
   ngOnInit(): void {

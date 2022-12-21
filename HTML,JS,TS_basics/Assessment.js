@@ -1,12 +1,11 @@
 function myfuction() {
-      //alert("Name");
+      //alert("wlecome to function");
       var x = document.getElementById("firstname").value;
        if (x == "") {
        alert("Name must be filled out");
        return false; 
      }
       var y = document.getElementById("dob").value;
-      //alert("Name "+y);
      if (y == "") {
        alert("DOB must be filled out");
        return false;
@@ -61,12 +60,13 @@ function myfuction() {
        alert("Expriy Date must be filled out");
        return false;
      }
+    //alert("validation pass");
     console.log("Name "+x);
     console.log("DOB "+y);
     console.log("Email "+z);
     console.log("MOB-Number "+a);
     console.log("Gender "+b);
-    console.log("Occupation "+C);
+    console.log("Occupation "+c);
     console.log("Id Type "+d);
     console.log("ID Number "+e);
     console.log("Issue Authority "+f);
