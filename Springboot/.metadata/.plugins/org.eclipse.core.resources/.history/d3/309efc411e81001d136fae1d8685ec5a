@@ -1,0 +1,22 @@
+package com.book.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.book.service.IBookService;
+
+@RestController
+public class BookController {
+	
+	@Autowired
+	private IBookService bookService;
+	
+ @PostMapping("/api/v1/digitalbooks/author/{authorid}/books")
+ Integer createBook(@RequestBody Library library) {
+		Integer id = libraryService.saveBook(library);
+		System.out.println(id);
+		return id;
+ 
+}

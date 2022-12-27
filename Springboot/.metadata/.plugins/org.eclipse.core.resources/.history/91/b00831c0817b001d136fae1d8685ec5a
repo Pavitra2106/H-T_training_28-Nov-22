@@ -1,0 +1,5 @@
+package com.basics.ref;
+
+public interface IWork {
+
+}

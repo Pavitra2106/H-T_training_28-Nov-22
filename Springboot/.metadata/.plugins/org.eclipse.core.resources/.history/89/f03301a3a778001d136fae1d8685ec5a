@@ -1,0 +1,55 @@
+package com.library.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.library.entity.Library;
+import com.library.repo.ILibraryRep;
+
+
+
+public class LibraryServiceImpl implements ILibraryService{
+	
+	@Autowired
+	private ILibraryRep iLibraryRep;
+	
+	@Override
+	public Integer saveEmployee(Library library) {
+		Library saveEmployee =iLibraryRep .save(library);
+		return saveEmployee.getId();
+	}
+
+	@Override
+	public List<Library> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return iLibraryRep.findAll();
+	}
+
+	@Override
+	public Optional<Library> getEmployeesById(Integer id) {
+		// TODO Auto-generated method stub
+		return iLibraryRep.findById(id);
+	}
+
+	@Override
+	public void deleteEmployee(Integer id) {
+		iLibraryRep.deleteById(id);
+	}
+
+	@Override
+	public Library updateEmployee(Library library, Integer id) {
+		Library existingEmployee = iLibraryRep.findById(id).orElseThrow(()
+				-> new ResourceNotFoundException("Library","id",id));
+		
+		existingEmployee.setEmail(library.getEmail());
+		existingEmployee.setePosition(library.getePosition());
+		existingEmployee.seteName(library.geteName());
+		existingEmployee.setSalary(library.getSalary());
+		iLibraryRep.save(existingEmployee);
+		return existingEmployee;
+	}
+
+
+}

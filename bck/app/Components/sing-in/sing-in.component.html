@@ -1,0 +1,27 @@
+<div style="background-image: 
+url('https://as2.ftcdn.net/v2/jpg/01/19/11/55/1000_F_119115529_mEnw3lGpLdlDkfLgRcVSbFRuVl6sMDty.jpg');">
+ 
+ <div style="text-align: center;  margin-left: 390px; margin-right: 390px; background-color: aqua;">
+    <h2 style="text-align: center; background-color:blue; color:white;" >SING-IN</h2>
+<form class="row gy-1 gx-1 align-items-right" #loginForm='ngForm' (ngSubmit)="onLogin()">
+    <div class="row g-2">
+        <label for="inputemail" style="color: black;"
+         class="col-sm-5 col-form-label">Email address</label>
+        <div class="col-md-6">
+          <input  [(ngModel)]="user.emailId" name="emailId" 
+          type="emailId" class="form-control" id="emailId" required>
+        </div>
+      </div>
+      <div class="row g-2">
+        <label for="inputpassword" style="color: black;"
+         class="col-sm-5 col-form-label">Password</label>
+        <div class="col-md-6">
+          <input [(ngModel)]="user.password" name="password" 
+          type="password" class="form-control" id="password" required>
+        </div>
+      </div>
+      <div class="col-auto"  style="margin-top: 5%; margin-bottom: 4px; margin-left: 200px;">
+        <button [disabled]="!loginForm" type="submit" class="btn btn-primary">Submit</button>
+      </div>
+  </form>
+  </div>

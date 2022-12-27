@@ -1,0 +1,138 @@
+package com.digitalbook.controller.user;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.digitalbook.entity.user.Book;
+import com.digitalbook.entity.user.User;
+import com.digitalbook.service.IUserDetailsService;
+
+@RestController
+@RequestMapping("/api/v1/digitalbooks")
+public class UserController {
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@Autowired
+	private IUserDetailsService  userDetailsService;
+	
+	 @GetMapping("/sign/{id}")
+	    public Integer authenticateUser1(@PathVariable Integer id){
+	     
+	        return id;
+	    }
+	    
+//----------------------------main------------------------------------------------------------------	 
+    @GetMapping("/serech/{id}")
+    public Optional<Book> getBook(@PathVariable Integer id){
+    
+    	return this.restTemplate.getForObject("http://BOOK-SERVICE/getbook/"+id,Optional.class);
+    }
+    
+    @PostMapping("/sign-in")
+    public ResponseEntity<String> authenticateUser(@RequestBody User user){
+       
+    	String message=userDetailsService.userSignIn(user);
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+    @PostMapping("/sign-up")
+    public ResponseEntity<?> registerUser(@RequestBody User user){
+    
+    String message=userDetailsService.userSignUp(user);
+    if(message.equals("Username is already taken!")){
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    // add check for email exists in DB
+    if(message.equals("Email is already taken!")){
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+    
+    return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+    
+    }
+    
+//    @GetMapping("/logout")
+//      public String logoutPage(HttpServletRequest request, HttpServletResponse response) {  
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
+//        if (auth != null){      
+//           new SecurityContextLogoutHandler().logout(request, response, auth);  
+//        }  
+//         return "redirect:/";  
+//     }
+    
+    //-----Author can create a book------
+    @PostMapping("/author/{authorid}/books")
+   public Integer authorCreateBook(@PathVariable("authorid") Integer authorid ,@RequestBody Book bookdata) {
+    	//Book bookdata =(Book) user.getBook();
+       String accessType=userDetailsService.accessRightCheck(authorid);
+    if(accessType.equals("Author"))
+    	return this.restTemplate.getForObject("http://BOOK-SERVICE/addnewbook/"+bookdata,Integer.class);
+    
+    	return (0);
+    }
+    //-----Author can update a book------
+    @PutMapping("/author/{authorid}/books/{bookid}")
+    public Boolean authorupdateBook(@PathVariable("authorid") Integer authorid ,@PathVariable("bookid") Long bookid ,
+    		@RequestBody Book bookdata) {
+    	//Book bookdata =(Book) user.getBook();
+    	   String accessType=userDetailsService.accessRightCheck(authorid);
+    	    if(accessType.equals("Author")) {
+    	restTemplate.getForObject("http://BOOK-SERVICE/updatebook/"+bookdata+"/"+bookid,ResponseEntity.class);
+    	    return true;
+    	    }
+    	    	return false;
+    }
+    //-----Author can update book status------
+    @PostMapping("/author/{authorid}/books/{bookid}/active")
+    public Boolean authorBlockUnblockBook(@PathVariable("authorid") Integer id ,@PathVariable("bookid") Integer bookid ,
+    		@PathVariable("active") Boolean bookstatus) {
+    	String accessType=userDetailsService.accessRightCheck(id);
+	    if(accessType.equals("Author")) {
+	    	restTemplate.getForObject("http://BOOK-SERVICE/updatestatus/"+bookid+"/"+bookstatus,null);
+	    			 return true;
+	    }
+    	return false;
+	    }
+   //--author end---------
+    
+    //---ReDER STSART-----
+    
+    @PostMapping("/readers/{userid}/{bookid}")
+    public Boolean readerSubscribeBook(@PathVariable("userid") Integer id,
+    		@PathVariable("bookid") Integer bookid){
+    	String accessType=userDetailsService.accessRightCheck(id);
+	    if(accessType.equals("Reader")) {
+	    Boolean subscribeMassage=restTemplate.getForObject("http://BOOK-SERVICE/booksubcribtion/"+id+"/"+bookid,Boolean.class);
+			if(subscribeMassage) 
+	    	return true;
+			else
+				 return false;
+        }
+       return false;
+	 }
+ 
+    
+    @GetMapping("/readers/{userid}/books")
+    public Optional<Book> readerAllSubscribeBook(@PathVariable("userid") Integer id){
+    	String accessType=userDetailsService.accessRightCheck(id);
+	    if(accessType.equals("Reader")) {
+	    	List Book=this.restTemplate.getForObject("http://BOOK-SERVICE/allsubcribtionbooks/"+id,List.class);
+	    
+		return Book;
+	    }
+    }
+    
+}

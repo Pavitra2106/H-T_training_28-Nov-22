@@ -1,0 +1,13 @@
+package com.book.service;
+
+import com.book.entity.Book;
+
+public class BookServiceImpl  implements IBookService{
+
+	@Override
+	public Integer saveBook(Book book) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

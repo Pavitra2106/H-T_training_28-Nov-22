@@ -1,0 +1,24 @@
+package com.user.entity;
+
+import java.util.Date;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class Book {
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long bookid;
+	private String logo;
+	private String title;
+	private String category;
+	private String bookContent;
+	private String price;
+	private String author;
+	private String publisher;
+	private Date publisherDate;
+	private String chapters;
+	private Boolean active;
+
+}

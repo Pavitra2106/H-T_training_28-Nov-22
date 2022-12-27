@@ -1,0 +1,10 @@
+package com.basics.lambda;
+
+public class LearnLambda {
+
+	public static void main(String[] args) {
+		System.out.print("heloo");
+Learnl
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.user.service;
+
+import com.user.entity.User;
+
+public interface IUserService {
+	
+	void save(User user);
+    User findByUsername(String username);
+}

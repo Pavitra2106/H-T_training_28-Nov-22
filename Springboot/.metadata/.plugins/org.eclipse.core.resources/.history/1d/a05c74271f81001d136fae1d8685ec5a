@@ -1,0 +1,14 @@
+package com.book.service;
+
+import com.book.entity.Book;
+
+
+public class BookServiceImpl  implements IBookService{
+
+	@Override
+	public Integer saveBook(Book book) {
+		Book savebook =iLibraryRep .save(book);
+		return savebook.getBookId();
+	}
+
+}

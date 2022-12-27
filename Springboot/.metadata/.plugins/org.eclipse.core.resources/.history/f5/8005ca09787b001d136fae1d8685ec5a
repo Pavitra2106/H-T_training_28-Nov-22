@@ -1,0 +1,11 @@
+package com.basics.functionalInterface;
+import java.util.function.Consumer;
+
+public class CusumerDemo {
+	public static void main(String[] args) {
+		
+		Consumer<Integer> consumer=(t) -> System.out.println("print "+ t);
+		consumer.accept(2000);
+	}
+
+}

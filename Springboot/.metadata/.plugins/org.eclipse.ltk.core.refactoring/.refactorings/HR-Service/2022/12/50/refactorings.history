@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.emp&apos; to &apos;com.hr&apos;&#x0D;&#x0A;- Original project: &apos;HR-Service&apos;&#x0D;&#x0A;- Original element: &apos;HR-Service/src/main/java/com.emp&apos;&#x0D;&#x0A;- Renamed element: &apos;HR-Service/src/main/java/com.hr&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.emp&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.emp" name="com.hr" qualified="false" references="true" stamp="1670525026904" textual="false" version="1.0"/>
+</session>

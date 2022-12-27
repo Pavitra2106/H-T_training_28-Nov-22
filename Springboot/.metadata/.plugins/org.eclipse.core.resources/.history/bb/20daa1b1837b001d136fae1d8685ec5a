@@ -1,0 +1,8 @@
+package com.basics.ref;
+
+public class Project {
+
+	public static void projectProgress() {
+		System.out.println("project is making progress");
+	}
+}

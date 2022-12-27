@@ -1,0 +1,16 @@
+package com.user.entity;
+
+import java.util.Date;
+
+public class Book {
+	private String logo;
+	private String title;
+	private String category;
+	private String price;
+	private String author;
+	private String publisher;
+	private Date publisherDate;
+	private String chapters;
+	private Boolean active;
+
+}

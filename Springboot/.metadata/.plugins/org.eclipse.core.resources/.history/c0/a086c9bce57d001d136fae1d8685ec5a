@@ -1,0 +1,10 @@
+package com.basics.assignment;
+
+public class Exams {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

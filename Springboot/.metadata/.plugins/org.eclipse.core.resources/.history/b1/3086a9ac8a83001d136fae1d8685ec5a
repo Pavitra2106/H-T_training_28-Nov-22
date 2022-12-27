@@ -1,0 +1,46 @@
+package com.digitalbook.entity.user;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class UserSubscribe {
+	private Long userId;
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer subscribeId;
+	private List<Long> BookId=new ArrayList<>();
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public Long getSubscribeId() {
+		return subscribeId;
+	}
+	public void setSubscribeId(Long subscribeId) {
+		this.subscribeId = subscribeId;
+	}
+	public List<Long> getBookId() {
+		return BookId;
+	}
+	public void setBookId(List<Long> bookId) {
+		BookId = bookId;
+	}
+	public UserSubscribe(Long userId, Long subscribeId, List<Long> bookId) {
+		super();
+		this.userId = userId;
+		this.subscribeId = subscribeId;
+		BookId = bookId;
+	}
+	public UserSubscribe() {
+		super();
+	}
+	
+	
+}

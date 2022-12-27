@@ -1,0 +1,5 @@
+package com.token.entity;
+
+public class JwtRequest {
+
+}

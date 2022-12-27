@@ -1,0 +1,19 @@
+package com.digitalbook.repo;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.digitalbook.entity.user.User;
+
+
+
+@Repository
+public interface IUserRepo  extends JpaRepository<User, Integer>{
+	Optional<User> findByEmailId(String emailId);
+   // Optional<User> findByUsernameOrEmail(String username, String emailId);
+    Optional<User> findByUsername(String username);
+    Boolean existsByUsername(String username);
+    Boolean existsByEmailId(String emailId);
+}

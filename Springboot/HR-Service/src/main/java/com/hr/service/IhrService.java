@@ -1,0 +1,8 @@
+package com.hr.service;
+
+import com.hr.entity.HR;
+
+public interface IhrService {
+	public HR getHr(Long id);
+
+}

@@ -1,0 +1,5 @@
+package com.library.repo;
+
+public interface ILibraryRep {
+
+}

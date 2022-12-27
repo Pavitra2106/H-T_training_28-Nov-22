@@ -1,0 +1,5 @@
+package com.digitalbook.entity.user;
+
+public class Book {
+
+}

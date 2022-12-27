@@ -1,0 +1,21 @@
+package com.library.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.library.entity.Library;
+
+
+public interface ILibraryService {
+	
+	Integer saveBook(Library library);
+
+	public List<Library> getAllBooks();
+	
+	Optional<Library> getEmployeesById(Integer id);
+	
+	public void deleteEmployee(Integer id);
+	
+	Library updateEmployee(Library library ,Integer id );
+
+}

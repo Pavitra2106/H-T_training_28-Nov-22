@@ -1,0 +1,102 @@
+package com.book.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.book.entity.Book;
+import com.book.service.IBookService;
+
+
+
+@RestController
+public class BookController {
+	
+	@Autowired
+	private IBookService bookService;
+	
+	 @GetMapping("/{id}")
+	    public Integer authenticateUser1(@PathVariable Integer id){
+	     
+	        return id;
+	    }
+	
+	//create book ------------------W
+ @PostMapping("/addnewbook")
+ Integer createBook(@RequestBody Book book) {
+	System.out.println("----------------------------------------------------");
+	 Integer id = bookService.saveBook(book);
+		
+		return id;
+   }
+ 
+ //update a book ----------------
+	@PutMapping("/updatebook/{bookid}")
+	public ResponseEntity<Book> updateBook(@PathVariable("bookid") Integer bookid ,@RequestBody Book book){
+	
+		return new ResponseEntity<Book>(bookService.updateBook(book, bookid), HttpStatus.OK);
+	}
+	
+	//can block and unblock a book------------
+	@PostMapping("updatestatus/{bookid}/{bookstatus}")
+	public void updateBookBorrowedStatus(@PathVariable("bookid") Integer bookid ,@RequestBody Boolean bookstatus ){
+		
+		bookService.updateBookStatus(bookstatus, bookid);
+	}
+	
+	//first api
+	@GetMapping("getallbook/{bookid}")
+	public Optional<Book> getBooksById(@PathVariable("bookid") Integer bookid){
+		return bookService.getBooksById(bookid);
+	}
+	
+	//--reader
+	@PostMapping("/booksubcribtion/{userid}/{bookid}")
+    public Integer readerSubscribeBook(@PathVariable("userid") Integer userid, @RequestBody Integer bookid){
+		return bookService.readerSubscribeBook(userid,bookid);
+				
+	}
+	
+	@GetMapping("/allsubcribtionbooks/{userid}/read")
+    public List<Book> readerAllSubscribeBook(@PathVariable("userid") Integer userid){
+		return bookService.readerAllSubscribeBook(userid);
+				
+	}
+	
+	@GetMapping("/subcribedbook/{userid}/{subscribeid}")
+    public Optional<Book> subscribeByIdBook(@PathVariable("userid") Integer userid,@PathVariable("subscribeid") Integer subscribeid){
+		return bookService.subscribeByIdBook(userid,subscribeid);		
+	}
+	
+	@GetMapping("/readsubcribedbook/{userid}/{subscribeid}")
+    public String readSubscribedBook(@PathVariable("userid") Integer userid,@PathVariable("subscribeid") Integer subscribeid){
+		return bookService.readSubscribedBook(userid,subscribeid);		
+	}
+	
+	@DeleteMapping("/deletesubcribedbook/{userid}/{subscribeid}")
+	public ResponseEntity<Book> deletesubscription(@PathVariable("userid") Integer userid,@PathVariable("subscribeid") Integer subscribeid){
+		ResponseEntity<Book> responseEntity = new ResponseEntity<>(HttpStatus.OK);
+		 String errmeg=null;
+		try{
+		  errmeg= bookService.deletesubcribedbook(userid,subscribeid);
+		
+		  if (errmeg.equals("Subscription can't be cancel")) {
+			  responseEntity =  new ResponseEntity<Book>(HttpStatus.NOT_ACCEPTABLE);
+		  }
+		}catch (Exception e) {
+			e.printStackTrace();
+			responseEntity =  new ResponseEntity<Book>(HttpStatus.NOT_FOUND);
+		}
+		return responseEntity ;
+	}
+}

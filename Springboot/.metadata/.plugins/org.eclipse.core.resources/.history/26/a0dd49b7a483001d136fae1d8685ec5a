@@ -1,0 +1,98 @@
+package com.book.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.book.entity.Book;
+import com.book.entity.BookSubscribe;
+import com.book.repo.IBookRepo;
+import com.book.repo.IBookSubscribe;
+import com.book.exception.ResourceNotFoundException;
+
+@Service
+public class BookServiceImpl  implements IBookService{
+
+	@Autowired
+	private IBookRepo bookRepo;
+	@Autowired
+	private  IBookSubscribe bookSubscribe;
+	@Override
+	public Integer saveBook(Book book) {
+		Book savebook =bookRepo .save(book);
+		return savebook.getBookid();
+	}
+
+	@Override
+	public Book updateBook(Book book, Integer bookid) {
+		Book existingBook = bookRepo.findById(bookid).orElseThrow(()
+				-> new ResourceNotFoundException("Book","bookid",bookid));
+		
+		existingBook.setLogo(book.getLogo());
+		existingBook.setTitle(book.getTitle());
+		existingBook.setCategory(book.getCategory());
+		existingBook.setPrice(book.getPrice());
+		existingBook.setAuthor(book.getAuthor());
+		existingBook.setPublisher(book.getPublisher());
+		existingBook.setPublisherDate(book.getPublisherDate());
+		existingBook.setChapters(book.getChapters());
+		existingBook.setActive(book.getActive());
+		bookRepo.save(existingBook);
+		return existingBook;
+	}
+	
+	@Override
+	public void updateBookStatus(Boolean active, Integer bookid) {
+		Book existingBook = bookRepo.findById(bookid).orElseThrow(()
+				-> new ResourceNotFoundException("Book","bookid",bookid));
+		if(active)
+		existingBook.setActive(active);
+		else
+			existingBook.setActive(active);
+		bookRepo.save(existingBook);
+	}
+	
+
+	@Override
+	public Optional<Book> getBooksById(Integer id) {
+		// TODO Auto-generated method stub
+		return bookRepo.findById(id);
+	}
+
+	@Override
+	public Integer readerSubscribeBook(Integer userid, Integer bookid) {
+		
+		if(bookRepo.findById(bookid) != null)
+		{
+			BookSubscribe bookSubscribeData =new BookSubscribe();
+			bookSubscribeData.setBookid(bookid);
+			bookSubscribeData.setUserid(userid);
+			bookSubscribe.save(bookSubscribeData);
+			return bookSubscribeData.getSubscribeid();
+	     }
+		return null;
+		
+		
+	}
+
+	@Override
+	public List<Book> readerAllSubscribeBook(Integer userid) {
+		List<BookSubscribe> subBookId= (List<BookSubscribe>) bookSubscribe.getById(userid);
+	 // for (Integer id:subBookId.) {
+		  
+	 // }
+	
+		return null;
+		
+	}
+
+	@Override
+	public List<Book> subscribeByIdBook(Integer userid, Integer subscribeid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

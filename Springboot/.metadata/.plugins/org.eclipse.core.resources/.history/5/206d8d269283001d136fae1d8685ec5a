@@ -1,0 +1,6 @@
+package com.book.entity;
+
+public class BookSubscribe {
+	private Integer userid
+
+}

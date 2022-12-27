@@ -1,0 +1,145 @@
+package com.digitalbook.entity.user;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import com.digitalbook.entity.user.User;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class Book {
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer bookid;
+	private String logo;
+	private String title;
+	private String category;
+	private String price;
+	private String author;
+	private String publisher;
+	private String publisherDate;
+	private String chapters;
+	private Boolean active;
+	private Integer id;
+	private String bookcontent;
+
+	public String getBookcontent() {
+		return bookcontent;
+	}
+
+	public void setBookcontent(String bookcontent) {
+		this.bookcontent = bookcontent;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getBookid() {
+		return bookid;
+	}
+
+	public void setBookid(Integer bookid) {
+		this.bookid = bookid;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public String getPublisherDate() {
+		return publisherDate;
+	}
+
+	public void setPublisherDate(String publisherDate) {
+		this.publisherDate = publisherDate;
+	}
+
+	public String getChapters() {
+		return chapters;
+	}
+
+	public void setChapters(String chapters) {
+		this.chapters = chapters;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+
+	public Book(Integer bookid, String logo, String title, String category, String price, String author, String publisher,
+			String publisherDate, String chapters, Boolean active, Integer id) {
+		super();
+		this.bookid = bookid;
+		this.logo = logo;
+		this.title = title;
+		this.category = category;
+		this.price = price;
+		this.author = author;
+		this.publisher = publisher;
+		this.publisherDate = publisherDate;
+		this.chapters = chapters;
+		this.active = active;
+		this.id = id;
+	}
+
+	public Book() {
+		super();
+	}
+	
+}

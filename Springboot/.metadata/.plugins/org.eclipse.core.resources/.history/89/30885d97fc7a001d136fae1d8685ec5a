@@ -1,0 +1,12 @@
+package com.basics.functions;
+
+public class BasicFunction {
+
+	public static void main(String[] args) {
+		System.out.print("Add " +Add(10,20));
+	}
+
+	 static Integer Add(int i, int j) {
+		return i+j;
+	}
+}

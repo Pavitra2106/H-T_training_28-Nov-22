@@ -1,0 +1,62 @@
+package com.library.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.library.entity.Library;
+import com.library.service.ILibraryService;
+
+@RestController
+public class LibraryController {
+
+	@Autowired
+	private ILibraryService libraryService;
+	
+	@PostMapping("/Add")
+	Integer createEmployee(@RequestBody Library library) {
+		Integer id = libraryService.saveEmployee(library);
+		System.out.println(id);
+		return id;
+	}
+	
+	@GetMapping("/getall")
+	public List<Library> getAllEmployees(){
+		return libraryService.getAllEmployees();
+	}
+	
+	@GetMapping("/get/{id}")
+	public Optional<Library> getEmployeesById(@PathVariable Integer id){
+		Optional<Library> employeeById =libraryService.getEmployeesById(id);
+		return employeeById ;
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Library> deleteEmployee(@PathVariable Integer id){
+		ResponseEntity<Library> responseEntity = new ResponseEntity<>(HttpStatus.OK);
+		try {
+			libraryService.deleteEmployee(id);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			responseEntity =  new ResponseEntity<Library>(HttpStatus.NOT_FOUND);
+		}
+		return responseEntity ;
+	}
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Library> updateEmployee(@PathVariable("id") Integer id ,@RequestBody Library library){
+		
+		return new ResponseEntity<Library>(libraryService.updateEmployee(library, id), HttpStatus.OK);
+	}
+}

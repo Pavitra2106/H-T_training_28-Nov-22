@@ -1,0 +1,5 @@
+package com.emp.Repo;
+
+public interface IEmployeeRepo {
+
+}

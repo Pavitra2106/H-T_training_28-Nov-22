@@ -1,0 +1,22 @@
+package com.book.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.book.entity.Book;
+
+public interface IBookService {
+
+	Optional<Book> getBooksById(Integer id);
+	
+	Integer saveBook(Book book);
+
+	Book updateBook(Book book, Integer bookid);
+	
+	public void updateBookStatus(Boolean active ,Integer bookid );
+
+	public void readerSubscribeBook(Integer userid, Integer bookid);
+
+	
+
+}

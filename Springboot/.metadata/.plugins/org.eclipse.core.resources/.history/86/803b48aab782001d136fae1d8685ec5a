@@ -1,0 +1,93 @@
+package com.user.service;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.user.entity.Role;
+import com.user.entity.User;
+import com.user.repo.IRoleRepo;
+import com.user.repo.IUserRepo;
+
+@Service
+public class UserDetailsServiceImpl implements IUserDetailsService{
+    @Autowired
+    private IUserRepo userRepository;
+    
+    @Autowired
+    private IRoleRepo roleRepository;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public UserDetailsServiceImpl(IUserRepo userRepository) {
+        this.userRepository = userRepository;   
+}
+
+    @Override
+    public String userSignUp(User user) {
+    	
+    	if(userRepository.existsByUsername(user.getUsername())){
+            return "Username is already taken!";
+        }
+
+        // add check for email exists in DB
+        if(userRepository.existsByEmail(user.getEmailId())){
+            return "Email is already taken!";
+        }
+
+        // create user object
+        User usersave = new User();
+        usersave.setUsername(user.getUsername());
+        usersave.setFirstName(user.getFirstName());
+        usersave.setLastName(user.getLastName());
+        usersave.setEmailId(user.getEmailId());
+        usersave.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        Role roles = roleRepository.findByName("ROLE_ADMIN").get();
+        usersave.setRoles(Collections.singleton(roles));
+
+        userRepository.save(usersave);
+
+        return "User registered successfully";
+    }    
+    
+    
+    
+    
+@Override
+public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+      User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+             .orElseThrow(() ->
+                     new UsernameNotFoundException("User not found with username or email: "+ usernameOrEmail));
+
+    Set<GrantedAuthority> authorities = user
+            .getRoles()
+            .stream()
+            .map((role) -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toSet());
+
+    return new org.springframework.security.core.userdetails.User(user.getEmailId(),
+            user.getPassword(),
+            authorities);
+}
+
+
+
+
+
+
+
+}

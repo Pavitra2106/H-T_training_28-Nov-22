@@ -1,0 +1,52 @@
+package com.book.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.book.entity.Book;
+import com.book.repo.IBookRepo;
+import com.library.entity.Library;
+import com.book.exception.ResourceNotFoundException;
+
+@Service
+public class BookServiceImpl  implements IBookService{
+
+	@Autowired
+	private IBookRepo bookRepo;
+	
+	@Override
+	public Integer saveBook(Book book) {
+		Book savebook =bookRepo .save(book);
+		return savebook.getBookId();
+	}
+
+	@Override
+	public Book updateBook(Book book, Integer bookid) {
+		Book existingBook = bookRepo.findById(bookid).orElseThrow(()
+				-> new ResourceNotFoundException("Book","bookid",bookid));
+		
+		existingBook.setLogo(book.getLogo());
+		existingBook.setTitle(book.getTitle());
+		existingBook.setCategory(book.getCategory());
+		existingBook.setPrice(book.getPrice());
+		existingBook.setAuthor(book.getAuthor());
+		existingBook.setPublisher(book.getPublisher());
+		existingBook.setPublisherDate(book.getPublisherDate());
+		existingBook.setChapters(book.getChapters());
+		existingBook.setActive(book.getActive());
+		bookRepo.save(existingBook);
+		return existingBook;
+	}
+	
+	@Override
+	public void updateBookBorrowedStatus(Book book, Integer id) {
+		Library existingBook = iLibraryRep.findById(id).orElseThrow(()
+				-> new ResourceNotFoundException("Library","id",id));
+		if(library.getBorrowedStatus())
+		existingBook.setBorrowedStatus(library.getBorrowedStatus());
+		else
+		existingBook.setBorrowedStatus(library.getBorrowedStatus());
+		iLibraryRep.save(existingBook);
+	}
+
+}

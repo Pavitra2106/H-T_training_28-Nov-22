@@ -1,0 +1,9 @@
+package com.book.service;
+
+import com.book.entity.Book;
+
+public interface IBookService {
+
+	Integer saveBook(Book book);
+
+}

@@ -1,0 +1,84 @@
+<div class="col-md-12">
+    <div class="card card-container" *ngIf="!isSuccessful">
+        <h3 class="text-center">Search Books</h3>
+
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <!--<input type="text" class="form-control" name="category" [(ngModel)]="form.category" required
+                    #category="ngModel" />
+                <div class="alert-danger" *ngIf="category.errors && f.submitted">
+                    <div *ngIf="category.errors.required">Category is required</div>
+                </div>-->
+                <select [(ngModel)]="form.category" class="form-control" name="category">
+                    <option *ngFor="let data of searchElement.categorySet" [ngValue]="data">{{data}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <select [(ngModel)]="form.title" class="form-control" name="title">
+                    <option *ngFor="let data of searchElement.titleSet" [ngValue]="data">{{data}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <select [(ngModel)]="form.author" class="form-control" name="author">
+                    <option *ngFor="let data of searchElement.listAuther" [ngValue]="data.id">{{data.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <select [(ngModel)]="form.price" class="form-control" name="price">
+                    <option *ngFor="let data of searchElement.priceSet" [ngValue]="data">{{data}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="publisher">Publisher</label>
+                <select [(ngModel)]="form.publisher" class="form-control" name="publisher">
+                    <option *ngFor="let data of searchElement.publisherSet" [ngValue]="data">{{data}}</option>
+                </select>
+            </div>
+
+            <div class="form-group text-center">
+                <button class="btn btn-primary btn-md">Search</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="f.submitted && isSearchFailed">
+                Failed!<br />{{ errorMessage }}
+            </div>
+        </form>
+
+
+    </div>
+    <div class="card" *ngIf="isSuccessful">
+        <button class="btn btn-primary btn-md" (click)="ngOnInit()">Back</button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Logo</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Price</th>
+                    <th>Published Date</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books; index as i">
+                    <td scope="row">{{i+1}}</td>
+                    <td>{{book.logo}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.publisher}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.createdDate}}</td>
+                    <td>{{book.category}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+package com.user.entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class User {
+	private String firstName;
+	private String lastName;
+	private String emailId;
+	private String password;
+	private String role;
+	
+	List<Book> listBook = new ArrayList<>();
+	
+}

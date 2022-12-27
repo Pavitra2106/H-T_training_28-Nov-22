@@ -1,0 +1,25 @@
+<div style="background-color:#9DF50D;width: 100%; height: 72px;">
+    <ul class="nav justify-content">
+        <a style="margin-left: 20px;"    class="navbar-brand" href="#">
+            <img src="https://img.freepik.com/premium-photo/education-concept-growth-knowledge-is-represented-by-pictures-trees-books_488220-17316.jpg?w=740"
+                alt="Bootstrap" width="90" height="50"><br><b>City Library</b>
+        </a>
+    <div class="nav justify-content-center" style="margin-top: 12px ">
+        <li class="nav-item" style= "margin-left:70px;">
+            <a class="nav-link active" aria-current="page" href=""><b>HOME</b></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="search"><b>Search Book</b></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="create"><b>ADD Book</b></a>
+        </li>
+        <li *ngIf="loggedin()" class="nav-item" style="margin-left: 550px; " >
+            <a class="nav-link" href="singin"><b>SING-IN</b></a>
+        </li>
+        <li *ngIf="loggedin()" class="nav-item">
+            <a class="nav-link" href="singup"><b>SING-UP</b></a>
+        </li>
+    </div>
+    </ul>
+</div>

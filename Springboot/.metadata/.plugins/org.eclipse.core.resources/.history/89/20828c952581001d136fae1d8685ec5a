@@ -1,0 +1,14 @@
+package com.book.service;
+
+import com.book.entity.Book;
+import com.library.entity.Library;
+
+public interface IBookService {
+
+	Integer saveBook(Book book);
+
+	Book updateBook(Book book, Integer bookid);
+	
+	public void updateBookBorrowedStatus(Book book ,Integer bookid );
+
+}

@@ -1,0 +1,50 @@
+package com.book.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.book.entity.Book;
+import com.book.service.IBookService;
+
+@RestController
+public class BookController {
+	
+	@Autowired
+	private IBookService bookService;
+	//create book
+ @PostMapping("/addnewbook")
+     Integer createBook(@RequestBody Book book) {
+		Integer id = bookService.saveBook(book);
+		//System.out.println(id);
+		return id;
+   }
+ 
+ //update a book
+	@PutMapping("/updatebook/{book}/{bookid}")
+	public ResponseEntity<Book> updateBook(@PathVariable("bookid") Integer bookid ,@PathVariable("Book") Book book){
+	
+		return new ResponseEntity<Book>(bookService.updateBook(book, bookid), HttpStatus.OK);
+	}
+	
+	//can block and unblock a book
+	@PostMapping("updatestatus/{bookid}/{bookstatus}")
+	public void updateBookBorrowedStatus(@PathVariable("bookid") Integer bookid ,@PathVariable("bookstatus") Boolean bookstatus ){
+		
+		bookService.updateBookBorrowedStatus(bookstatus, bookid);
+	}
+	
+	@GetMapping("/api/v1/digitalbooks/search/{bookid}")
+	public Optional<Book> getAllBook(@PathVariable("bookid") Integer bookid){
+		return bookService.getAllBooks(bookid);
+	}
+}

@@ -1,0 +1,70 @@
+package com.library.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.library.entity.Library;
+import com.library.service.ILibraryService;
+
+@RestController
+public class LibraryController {
+
+	@Autowired
+	private ILibraryService libraryService;
+	
+	@PostMapping("/Add")
+	Integer createBook(@RequestBody Library library) {
+		Integer id = libraryService.saveBook(library);
+		System.out.println(id);
+		return id;
+	}
+	
+	@GetMapping("/getall")
+	public List<Library> getAllBook(){
+		return libraryService.getAllBooks();
+	}
+	
+	@GetMapping("/get/{id}")
+	public Optional<Library> getBookById(@PathVariable Integer id){
+		Optional<Library> bookById =libraryService.getBookById(id);
+		return bookById ;
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Library> deleteEmployee(@PathVariable Integer id){
+		ResponseEntity<Library> responseEntity = new ResponseEntity<>(HttpStatus.OK);
+		try {
+			libraryService.deleteBook(id);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			responseEntity =  new ResponseEntity<Library>(HttpStatus.NOT_FOUND);
+		}
+		return responseEntity ;
+	}
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Library> updateBook(@PathVariable("id") Integer id ,@RequestBody Library library){
+		
+		return new ResponseEntity<Library>(libraryService.updateBook(library, id), HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateBookStatus/{id}")
+	public void updateBookBorrowedStatus
+	(@PathVariable("id") Integer id ,@RequestBody Library library){
+		Boolean borrowedStatus=library.getBorrowedStatus();
+		 libraryService.updateBookBorrowedStatus(borrowedStatus, id);
+	}
+}
