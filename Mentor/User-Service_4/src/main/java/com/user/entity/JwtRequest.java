@@ -2,11 +2,13 @@ package com.user.entity;
 
 public class JwtRequest {
 	
+	private String email;
 	private String username;
 	private String password;
 	
-	public JwtRequest(String username, String password) {
+	public JwtRequest(String email, String username, String password) {
 		super();
+		this.email = email;
 		this.username = username;
 		this.password = password;
 	}
@@ -15,6 +17,12 @@ public class JwtRequest {
 		super();
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -26,6 +34,5 @@ public class JwtRequest {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
+	}	
 }

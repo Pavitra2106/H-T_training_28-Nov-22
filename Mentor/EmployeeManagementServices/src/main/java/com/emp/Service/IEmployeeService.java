@@ -11,11 +11,11 @@ public interface IEmployeeService {
 
 	public List<Employee> getAllEmployees();
 	
-	public Optional<Employee> getEmployeesById(Integer id);
+	public  Optional<Employee> getEmployeesById(Long id);
 	
-	public void deleteEmployee(Integer id);
+	public void deleteEmployee(Long id);
 	
-	public Employee updateEmployee(Employee employee ,Integer id );
+	public Employee updateEmployee(Employee employee ,Long id );
 	
-	public void updateSalary(Employee employee ,Integer id );
+	public void updateJobSalary(Employee employee ,Long id );
 }

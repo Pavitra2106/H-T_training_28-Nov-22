@@ -31,21 +31,39 @@ public class EmployeeServiceImpl implements IEmployeeService{
 	}
 
 	@Override
-	public Optional<Employee> getEmployeesById(Integer id) {
+	public Optional<Employee> getEmployeesById(Long id) {
 		// TODO Auto-generated method stub
-		Employee employee=(Employee) employeeRepo.findByUserid(id);// .orElseThrow(() -> new UserDetails("User not found with email: "+ id));
-		return employeeRepo.findById(employee.getEmpid());
+		List<Employee> employee=employeeRepo.findByUserid(id);
+		Integer empid = null;
+		for(Employee employee2:employee) {
+			empid=employee2.getEmpid();
+			break;
+		}
+		return employeeRepo.findById(empid);
 	}
 	
 	@Override
-	public void deleteEmployee(Integer id) {
-		employeeRepo.deleteById(id);
+	public void deleteEmployee(Long id) {
+		List<Employee> employee=employeeRepo.findByUserid(id);
+		Integer empid = null;
+		for(Employee employee2:employee) {
+			empid=employee2.getEmpid();
+			break;
+		}
+		employeeRepo.deleteById(empid);
 	}
 
 	@Override
-	public Employee updateEmployee(Employee employee, Integer id) {
-		Employee existingEmployee = employeeRepo.findById(id).orElseThrow(()
-				-> new ResourceNotFoundException("Employee","id",id));
+	public Employee updateEmployee(Employee employee, Long id) {
+		Integer empid = null;
+		List<Employee> employeedata=employeeRepo.findByUserid(id);
+		for(Employee employee2:employeedata) {
+			empid=employee2.getEmpid();
+			break;
+		}
+		final Integer empidnew= empid;
+		Employee existingEmployee = employeeRepo.findById(empid).orElseThrow(()
+				-> new ResourceNotFoundException("Employee","empid",empidnew));
 		existingEmployee.setEmail(employee.getEmail());
 		existingEmployee.setFirstname(employee.getFirstname());
 		existingEmployee.setLastname(employee.getLastname());
@@ -54,9 +72,16 @@ public class EmployeeServiceImpl implements IEmployeeService{
 	}
 	
 	@Override
-	public void updateSalary(Employee employee, Integer id) {
-		Employee existingEmployee = employeeRepo.findById(id).orElseThrow(()
+	public void updateJobSalary(Employee employee, Long id) {
+		List<Employee> employeedata=employeeRepo.findByUserid(id);
+		Integer empid = null;
+		for(Employee employee2:employeedata) {
+			empid=employee2.getEmpid();
+			break;
+		}
+		Employee existingEmployee = employeeRepo.findById(empid).orElseThrow(()
 				-> new ResourceNotFoundException("Employee","id",id));
+		existingEmployee.setJob(employee.getJob());
 		existingEmployee.setSalary(employee.getSalary());
 		employeeRepo.save(existingEmployee);
 	}

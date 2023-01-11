@@ -26,4 +26,5 @@ public class UserDataService implements UserDetailsService {
 		return new User(user.getUsername() , user.getPassword() , new ArrayList<>());
 	}
 
+
 }
