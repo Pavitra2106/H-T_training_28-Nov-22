@@ -93,7 +93,7 @@ public class BookService {
 
 		List<BookResponse> books = bookRepository.findByCategoryAndTitleAndAuthorIdAndPriceAndPublisherActive(category,
 				title, authorId, price, publisher);
-
+		
 		if (books == null || books.isEmpty()) {
 			throw new RequestNotFounException("Error : Book not found");
 		}

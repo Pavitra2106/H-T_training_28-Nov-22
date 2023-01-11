@@ -1,33 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { CreateBookComponent } from './Components/create-book/create-book.component';
+import { HomepageComponent } from './Components/homepage/homepage.component';
+import { SearchBookComponent } from './Components/search-book/search-book.component';
+import { SingInComponent } from './Components/sing-in/sing-in.component';
+import { SingUpComponent } from './Components/sing-up/sing-up.component';
 
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
-import { BoardUserComponent } from './board-user/board-user.component';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { SearchComponent } from './book/search/search.component';
-import { CreateComponent } from './book/create/create.component';
-import { ListComponent } from './book/list/list.component';
-import { DetialsComponent } from './book/detials/detials.component';
-import { EditComponent } from './book/edit/edit.component';
-
-const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'user', component: BoardUserComponent },
-  { path: 'mod', component: BoardModeratorComponent },
-  { path: 'admin', component: BoardAdminComponent },
-  { path: 'search', component: SearchComponent },
-  { path: 'create', component: CreateComponent },
-  { path: 'list', component: ListComponent },
-  { path: 'details/:id', component: DetialsComponent },
-  { path: 'edit/:id', component:  EditComponent},
-  { path: '', redirectTo: 'search', pathMatch: 'full' }
+const routes: Routes = [{path:"",component:HomepageComponent},
+{path:"create", component:CreateBookComponent},
+{path:"search", component:SearchBookComponent},
+{path:"singin", component:SingInComponent},
+{path:"singup", component:SingUpComponent}
 ];
 
 @NgModule({

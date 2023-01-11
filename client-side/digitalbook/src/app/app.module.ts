@@ -1,48 +1,37 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import { BoardUserComponent } from './board-user/board-user.component';
-
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
-import { SearchComponent } from './book/search/search.component';
-import { CreateComponent } from './book/create/create.component';
-import { ListComponent } from './book/list/list.component';
-import { DetialsComponent } from './book/detials/detials.component';
-import { EditComponent } from './book/edit/edit.component';
+import { HomepageComponent } from './Components/homepage/homepage.component';
+import { SingUpComponent } from './Components/sing-up/sing-up.component';
+import { SingInComponent } from './Components/sing-in/sing-in.component';
+import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
+import { SearchBookComponent } from './Components/search-book/search-book.component';
+import { CreateBookComponent } from './Components/create-book/create-book.component';
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { UserService } from './Service/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    HomeComponent,
-    ProfileComponent,
-    BoardAdminComponent,
-    BoardModeratorComponent,
-    BoardUserComponent,
-    SearchComponent,
-    CreateComponent,
-    ListComponent,
-    DetialsComponent,
-    EditComponent
+    HomepageComponent,
+    SingUpComponent,
+    SingInComponent,
+    NavBarComponent,
+    SearchBookComponent,
+    CreateBookComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    HttpClientModule
+  FormsModule,
+  HttpClientModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

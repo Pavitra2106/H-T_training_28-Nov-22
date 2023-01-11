@@ -72,15 +72,19 @@ public class BookController {
 
 	}
 
-	@GetMapping("search")
-	public ResponseEntity<?> getByRequest(@RequestParam(required = false) String category,
-			@RequestParam(required = false) String title, @RequestParam(required = false) Integer authorId,
-			@RequestParam(required = false) Double price, @RequestParam(required = false) String publisher) {
+	//@GetMapping("search")
+	@PostMapping("search")
+	public List<BookResponse> getByRequest(@RequestBody Book book){
+//	(@RequestParam(required = false) String category,
+//			@RequestParam(required = false) String title, @RequestParam(required = false) Integer authorId,
+//			@RequestParam(required = false) Double price, @RequestParam(required = false) String publisher) {
 
 
-		List<BookResponse> books = bookService.getByRequest(category, title, authorId, price, publisher);
-
-		return ResponseEntity.ok(books);
+		List<BookResponse> books = bookService.getByRequest(
+				book.getCategory(), book.getTitle(), book.getAuthorId(),
+				book.getPrice(), book.getPublisher());
+		return books;
+		
 
 	}
 

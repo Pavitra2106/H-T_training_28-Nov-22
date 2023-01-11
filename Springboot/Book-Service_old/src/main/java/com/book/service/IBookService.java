@@ -26,4 +26,6 @@ public interface IBookService {
 
 	public String deletesubcribedbook(Integer userid, Integer subscribeid);
 
+	public List<Book> getByRequest(String category, String title, String author, String price, String publisher);
+
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.book.entity.Book;
@@ -60,12 +61,18 @@ public class BookController {
 		
 	}
 	
-	//first api
-	@GetMapping("getallbook/{bookid}")
-	public Optional<Book> getBooksById(@PathVariable("bookid") Integer bookid){
-		return bookService.getBooksById(bookid);
+	@GetMapping("search")
+	public ResponseEntity<?> getByRequest(@RequestParam(required = false) String category,
+			@RequestParam(required = false) String title, @RequestParam(required = false) String author,
+			@RequestParam(required = false) String price, @RequestParam(required = false) String publisher) {
+
+
+		List<Book> books = bookService.getByRequest(category, title, author, price, publisher);
+
+		return ResponseEntity.ok(books);
+
 	}
-	
+
 	//--reader
 	@PostMapping("/booksubcribtion/{userid}")
     public Integer readerSubscribeBook(@PathVariable("userid") Integer userid,@RequestBody Book book ){

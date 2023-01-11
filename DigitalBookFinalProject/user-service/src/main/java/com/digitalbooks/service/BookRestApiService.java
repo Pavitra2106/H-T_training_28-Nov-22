@@ -99,8 +99,15 @@ public class BookRestApiService {
 		}
 
 	}
-
-	public ResponseEntity<List<BookResponse>> searchBook(String category, String title, Integer author, Double price,
+	
+	public ResponseEntity<List> searchBook1(Book book) throws JsonMappingException, JsonProcessingException {
+		ResponseEntity<List> response = restTemplate.postForEntity(commonRestApiUrl.getSearchBookUrl(), book,
+				List.class);
+		
+		return response;
+		
+	}
+	public List<BookResponse> searchBook(String category, String title, Integer author, Double price,
 			String publisher) throws JsonMappingException, JsonProcessingException {
 
 		ResponseEntity<List<BookResponse>> response = null;
@@ -153,7 +160,7 @@ public class BookRestApiService {
 
 		response = ResponseEntity.status(response1.getStatusCode()).body(bookResponses);
 
-		return response;
+		return response.getBody();
 
 	}
 

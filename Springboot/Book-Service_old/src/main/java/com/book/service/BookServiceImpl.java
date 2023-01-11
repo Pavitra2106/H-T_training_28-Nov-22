@@ -146,5 +146,19 @@ public class BookServiceImpl  implements IBookService{
 		}
 		return "Wrong Subscribe Id";
 	}
+	
+	public List<Book> getByRequest(String category, String title, String author, String price,
+			String publisher) {
+
+
+		List<Book> books = bookRepo.findByCategoryAndTitleAndAuthorIdAndPriceAndPublisherActive(category,
+				title, price, publisher);
+
+		if (books == null || books.isEmpty()) {
+			return null;
+		}
+		return books;
+	}
+
 
 }

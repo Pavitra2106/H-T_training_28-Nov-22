@@ -19,10 +19,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 	Optional<Book> findByIdAndAuthorId(Integer bookId, Integer authorId);
 
 	@Query("SELECT b.id as bookId,b.logo as logo,b.title as title,b.authorId as authorId,b.publisher as publisher,b.price as price,"
-			+ "b.createdDate as createdDate,b.category as category FROM Book b WHERE b.active=true and "
-			+ "(:category is null or b.category = :category) and (:title is null or b.title = :title) and "
-			+ "(:authorId is null or b.authorId=:authorId) and (:price is null or b.price=:price) and "
-			+ "(:publisher is null or b.publisher=:publisher)")
+			+ "b.createdDate as createdDate,b.category as category FROM Book b WHERE b.active=true or "
+			+ " b.category = :category  or b.title = :title"
+			+ " or b.authorId=:authorId or b.price=:price "
+			+ " or b.publisher=:publisher")
 	List<BookResponse> findByCategoryAndTitleAndAuthorIdAndPriceAndPublisherActive(@Param("category") String category,
 			@Param("title") String title, @Param("authorId") Integer author, @Param("price") Double price,
 			@Param("publisher") String publisher);

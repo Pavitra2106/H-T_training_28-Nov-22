@@ -39,14 +39,14 @@ public class BookController {
 
 	@PostMapping("author/{authorId}/books")
 	@PreAuthorize("hasRole('AUTHOR')")
-	public ResponseEntity<Integer> createBook(@Valid @RequestBody Book book, @PathVariable Integer authorId)
+	public Integer createBook(@Valid @RequestBody Book book, @PathVariable Integer authorId)
 			throws Exception {
 
 		book.setAuthorId(authorId);
 		BookValidator.validate(book);
 		ResponseEntity<Integer> responseEntity = bookRestApiService.createBook(book);
-
-		return responseEntity;
+		return responseEntity.getBody();
+		// responseEntity;
 
 	}
 
@@ -75,54 +75,16 @@ public class BookController {
 
 	}
 
-	@GetMapping("author/{authorId}/books")
-	@PreAuthorize("hasRole('AUTHOR')")
-	public ResponseEntity<List<BookResponse>> getBooksByAuthor(@PathVariable Integer authorId)
+	@PostMapping("search")
+	public List searchBooks(@RequestBody Book book)
 			throws JsonMappingException, JsonProcessingException {
 
-		ResponseEntity<List<BookResponse>> responseEntity = bookRestApiService.getBooksByAuthor(authorId);
+		ResponseEntity<List> responseEntity = bookRestApiService.searchBook1(book);
 
-		return responseEntity;
-
-	}
-
-	@GetMapping("author/{authorId}/books/{bookId}")
-	@PreAuthorize("hasRole('AUTHOR')")
-	public ResponseEntity<Book> getBooksByAuthorAndBookId(@PathVariable Integer authorId, @PathVariable Integer bookId)
-			throws Exception {
-
-		ResponseEntity<Book> responseEntity = bookRestApiService.getBooksByAuthorAndBookId(authorId, bookId);
-
-		return responseEntity;
+		return responseEntity.getBody();
+	
 
 	}
-
-	@GetMapping("search")
-	public ResponseEntity<List<BookResponse>> searchBooks(@RequestParam(required = false) String category,
-			@RequestParam(required = false) @Nullable String title, @RequestParam(required = false) Integer author,
-			@RequestParam(required = false) Double price, @RequestParam(required = false) String publisher)
-			throws JsonMappingException, JsonProcessingException {
-
-		ResponseEntity<List<BookResponse>> responseEntity = bookRestApiService.searchBook(category, title, author,
-				price, publisher);
-
-		return responseEntity;
-
-	}
-
-	@GetMapping("v2/search")
-	public ResponseEntity<List<BookResponse>> searchBooksV2(@RequestParam(required = false) String category,
-			@RequestParam(required = false) @Nullable String title, @RequestParam(required = false) String author,
-			@RequestParam(required = false) Double price, @RequestParam(required = false) String publisher)
-			throws JsonMappingException, JsonProcessingException {
-
-		ResponseEntity<List<BookResponse>> responseEntity = bookRestApiService.searchBookV2(category, title, author,
-				price, publisher);
-
-		return responseEntity;
-
-	}
-
 	@PostMapping("readers/{bookId}/subscribe")
 	@PreAuthorize("hasRole('READER')")
 	public ResponseEntity<Integer> subscribeBook(@Valid @RequestBody BookSub bookSub, @PathVariable Integer bookId)
