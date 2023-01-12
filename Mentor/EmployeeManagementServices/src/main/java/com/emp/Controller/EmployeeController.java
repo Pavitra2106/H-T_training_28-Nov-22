@@ -26,7 +26,6 @@ public class EmployeeController {
 	@PostMapping("/Add")
 	Integer createEmployee(@RequestBody Employee employee) {
 		Integer id = employeeService.saveEmployee(employee);
-		System.out.println(id);
 		return id;
 	}
 	

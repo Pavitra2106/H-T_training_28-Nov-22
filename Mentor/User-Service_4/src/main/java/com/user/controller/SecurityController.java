@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.user.entity.Employee;
+import com.user.entity.Jobs;
 import com.user.entity.JwtRequest;
 import com.user.entity.JwtResponse;
 import com.user.entity.User;
@@ -123,6 +124,32 @@ public class SecurityController {
 	    }
 	
 	
-
+//jobs
+//create jobs
+		@PostMapping("/createjobs")
+		public ResponseEntity<?> createJobs(@RequestBody Jobs jobs) {
+			String url ="http://JOBS-SERVICE/addjobs";
+			Long jobId=this.restTemplate.postForObject(url, jobs, Long.class);
+			return new ResponseEntity<>(jobId, HttpStatus.OK);
+		}
+		
+		@GetMapping("/available/jobs")
+		public List<Jobs> getalljobs() {
+			  String url ="http://JOBS-SERVICE/alljobs";
+			  return this.restTemplate.getForObject(url,List.class);
+		}
+		
+		@PutMapping("/updatejob/{id}")
+		public ResponseEntity<?> updateJobs(@PathVariable("id") Long id, @RequestBody Jobs jobs) {
+			 String url ="http://JOBS-SERVICE/update/"+id;
+			 try {
+			 this.restTemplate.put(url, jobs);
+			 }
+			 catch (Exception e) {
+				 return new ResponseEntity<>("Fail",HttpStatus.BAD_REQUEST);
+			}
+			 return new ResponseEntity<>("Success",HttpStatus.OK);
+		}
+		
 
 }
