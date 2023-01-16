@@ -18,4 +18,7 @@ public interface IEmployeeService {
 	public Employee updateEmployee(Employee employee ,Long id );
 	
 	public void updateJobSalary(Employee employee ,Long id );
+	
+	public String jobcheck(Long id );
+	
 }

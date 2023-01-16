@@ -5,4 +5,5 @@ lastname: String  ='';
 email: String  ='';
 username: String  ='';
 role: String  ='';
+password: String = '';
 }

@@ -47,4 +47,9 @@ public class JobsController {
 	}
 	
 
+	@GetMapping("/jobtimeckeck/{currentjob}/{newjob}")
+	public Boolean jobtimeckeck(@PathVariable("currentjob") String currentjob,@PathVariable("newjob") String newjob) {
+		
+		return iJobsService.jobtimeckeck(currentjob,newjob);  
+	}
 }

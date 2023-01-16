@@ -17,7 +17,7 @@ public class Employee {
 	private String lastname;
 	private String email;
 	private Integer salary;
-	private List job;
+	private  String job;
 	
 	public Integer getEmpid() {
 		return empid;
@@ -67,9 +67,18 @@ public class Employee {
 		this.salary = salary;
 	}
 
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
 	
 	public Employee(Integer empid, Long userid, String firstname, String lastname, String email, Integer salary,
-			List job) {
+			String job) {
 		super();
 		this.empid = empid;
 		this.userid = userid;
@@ -84,15 +93,6 @@ public class Employee {
 		super();
 	}
 
-	public Employee(Integer empid, Long userid, String firstname, String lastname, String email, Integer salary) {
-		super();
-		this.empid = empid;
-		this.userid = userid;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.salary = salary;
-	}
 	
 	
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import User from 'src/app/Entity/User';
+import { UserServiceService } from 'src/app/Service/user-service.service';
 
 @Component({
   selector: 'app-sing-up',
@@ -11,11 +13,11 @@ export class SingUpComponent implements OnInit {
 
   }
 
-  signup : Signup = new Signup();
+  user : User = new User();
 
   submit() {
-    const observables = this.userService.saveSignup
-    (this.signup);
+    const observables = this.userservice.saveSignup
+    (this.user);
     observables.subscribe (
       (response:any) => {
         console.log(response);
@@ -27,7 +29,7 @@ export class SingUpComponent implements OnInit {
     )
   }
 
-  constructor() { }
+  constructor(private userservice : UserServiceService) { }
 
   ngOnInit(): void {
   }

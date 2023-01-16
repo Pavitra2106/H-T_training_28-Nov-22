@@ -67,6 +67,27 @@ public class JobsService implements IJobsService {
 		existingjobsmodule.setStatus(jobs.getStatus());
 		jobsRepo.save(existingjobsmodule);
 	}
+
+	@Override
+	public Boolean jobtimeckeck(String currentjob, String newjob) {
+		
+		List<Jobs> job=jobsRepo.findByJobnameList(currentjob);
+		LocalTime endtime = null;
+		for(Jobs jobdata:job) {
+			endtime=jobdata.getEndtime();
+			break;
+		}
+		List<Jobs> job2=jobsRepo.findByJobnameList(newjob);
+		LocalTime starttime = null;
+		for(Jobs jobdata:job2) {
+			starttime=jobdata.getStartingtime();
+			break;
+		}
+		if (endtime.isBefore(starttime)) {
+		return true;
+		}
+		return false;
+	}
 	
 	
 }

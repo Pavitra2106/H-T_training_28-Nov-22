@@ -67,48 +67,58 @@ public class UserService implements IUserService {
 	}
 
 	public Boolean updateJobAndSalary(Jobs jobs, Long userid) {
-//		
-//		User existingUser = iUserRepo.findById(userid).orElseThrow(
-//				() -> new ResourceNotFoundExceptionHandler("User", "userid", userid));
-//		if(existingUser.getRole().toString().equals(jobs.getApplicablerole())) {
-//			if(jobs.getStatus().equals("inprogress")) { 
-//				//job eligibalty
-//				
-//				//
-//				String url ="http://EMPLOYEE-SERVICE/updateJobSalary/"+userid;
-//				Employee employeedata= new Employee();
-//				employeedata.setJob(jobs.getJobname());
-//		        restTemplate.put(url, employeedata);  
-//		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
-//		        //restTemplate.put(urljob,jobs);
-//			}
-//			
-//			 if(jobs.getStatus().equals("completed")) { 
-//				System.out.println("~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~");
-//				String url ="http://EMPLOYEE-SERVICE/updateJobSalary/"+userid;
-//				Employee employeedata= new Employee();
-//				employeedata.setSalary(jobs.getProfitvalue());
-//		        restTemplate.put(url, employeedata);
-//		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
-//		        //restTemplate.put(urljob,jobs);
-//			}
-//			else if(jobs.getStatus().equals("aborted")) { 
-//				System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~");
-//				String url ="http://EMPLOYEE-SERVICE/updateJobSalary/"+userid;
-//				Employee employeedata= new Employee();
-//				employeedata.setJob(jobs.getJobname());
-//		        restTemplate.put(url, employeedata);
-//		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
-//		        // restTemplate.put(urljob,jobs);
-//			}
-//			 String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
-//		      restTemplate.put(urljob,jobs);
-//		}
-//		else
-//		{
-//			System.out.println("~~~~~~~~~6~~~~~~~~~~~~~~~~~~~~~~~~");
-//			return false;
-//		}
+		
+		User existingUser = iUserRepo.findById(userid).orElseThrow(
+				() -> new ResourceNotFoundExceptionHandler("User", "userid", userid));
+		if(existingUser.getRole().toString().equals(jobs.getApplicablerole())) {
+			if(jobs.getStatus().equals("inprogress")) { 
+				//job eligibalty
+				String url0 ="http://EMPLOYEE-SERVICE/jobckeck/"+userid;
+		        String currentJob=restTemplate.getForObject(url0, String.class);  
+		        if(currentJob!=null) {
+		        String urljob ="http://JOBS-SERVICE/jobtimeckeck/"+currentJob+"/"+jobs.getJobname();
+		        Boolean jobaccess=  restTemplate.getForObject(urljob,Boolean.class);
+		        if(jobaccess) {
+		        	return false;
+		        }
+		        }
+				//
+		        else {
+				String url ="http://EMPLOYEE-SERVICE/updateJobSalary/"+userid;
+				Employee employeedata= new Employee();
+				employeedata.setJob(jobs.getJobname());
+		        restTemplate.put(url, employeedata);  
+		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
+		        //restTemplate.put(urljob,jobs);
+		        }
+			}
+			
+			 if(jobs.getStatus().equals("completed")) { 
+				System.out.println("~~~~~~~~~4~~~~~~~~~~~~~~~~~~~~~~~~");
+				String url ="http://EMPLOYEE-SERVICE/updateJobSalary/"+userid;
+				Employee employeedata= new Employee();
+				employeedata.setSalary(jobs.getProfitvalue());
+		        restTemplate.put(url, employeedata);
+		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
+		        //restTemplate.put(urljob,jobs);
+			}
+			else if(jobs.getStatus().equals("aborted")) { 
+				System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~");
+				String url ="http://EMPLOYEE-SERVICE/updateJobSalary/"+userid;
+				Employee employeedata= new Employee();
+				employeedata.setJob(jobs.getJobname());
+		        restTemplate.put(url, employeedata);
+		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
+		        // restTemplate.put(urljob,jobs);
+			}
+			 String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
+		      restTemplate.put(urljob,jobs);
+		}
+		else
+		{
+			System.out.println("~~~~~~~~~6~~~~~~~~~~~~~~~~~~~~~~~~");
+			return false;
+		}
 		return true;
 	}
 

@@ -2,12 +2,15 @@ package com.jobs.entity;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -17,6 +20,7 @@ public class Jobs {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(unique=true)
 	private String jobname;
 	 @JsonFormat(pattern="HH:mm:ss")
 	private LocalTime startingtime;

@@ -14,5 +14,7 @@ public interface IJobsService {
 
 	public void updateJobAndSalary(Jobs jobs);
 
+	public Boolean jobtimeckeck(String currentjob, String newjob);
+
 	
 }

@@ -64,4 +64,11 @@ public class EmployeeController {
 		//System.out.println("~~~~~~~~emp~~~~~~~~~~~~~~~~~~~~~~~ "+ employee.getJob());
 		employeeService.updateJobSalary(employee, id);
 	}
+	
+	@GetMapping("/jobckeck/{id}")
+	public String jobcheck(@PathVariable("id") Long id ){
+		
+		return employeeService.jobcheck(id);
+	}
+	
 }
