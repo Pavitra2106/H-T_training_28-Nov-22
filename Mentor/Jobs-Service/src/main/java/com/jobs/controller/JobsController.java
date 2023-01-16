@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,7 +24,7 @@ public class JobsController {
 	
 	@PostMapping("/addjobs")
 	public Long createJobs(@RequestBody Jobs jobs) {
-		  System.out.println("~~~~~~~~~~~~~~~~~~~~~~create~~~~~~~~~~~~~~~~~~~~~~~");
+		 // System.out.println("~~~~~~~~~~~~~~~~~~~~~~create~~~~~~~~~~~~~~~~~~~~~~~");
 		Long id = iJobsService.saveJobs(jobs);  
 		return id;
 	}
@@ -39,5 +40,11 @@ public class JobsController {
 		return new ResponseEntity<Jobs>(iJobsService.updateJobs(jobs, id), HttpStatus.OK);
 		
 	}
+
+	@PutMapping("/updatejobtimestatus")
+	public void updateJobAndSalary(@RequestBody Jobs jobs){
+		iJobsService.updateJobAndSalary(jobs);
+	}
+	
 
 }

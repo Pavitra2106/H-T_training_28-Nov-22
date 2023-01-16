@@ -2,6 +2,7 @@ package com.user.service;
 
 import java.util.List;
 
+import com.user.entity.Jobs;
 import com.user.entity.User;
 
 public interface IUserService {
@@ -21,6 +22,6 @@ public interface IUserService {
 	//Register user(view users)
 	public List<User> getAllUsers();
 	
-	
+	public Boolean updateJobAndSalary(Jobs jobs, Long userid);
 
 }

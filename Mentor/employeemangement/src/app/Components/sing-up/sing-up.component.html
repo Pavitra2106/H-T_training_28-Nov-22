@@ -1,0 +1,89 @@
+<div class="container">
+    <h3> Sign up </h3> <br>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+
+        <div class="form-group">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">First Name</span>
+                <input required #firstname="ngModel" minlength="3" maxlength="20" [(ngModel)]="signup.firstname" name="firstname"
+                    type="text" ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a first name">
+                    <span Style="margin-left:20px;" *ngIf="firstname.invalid && firstname.touched" id="inputGroup-sizing-sm" class="error">*firstname is not valid</span>
+                    </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Last Name</span>
+                <input required #lastname="ngModel" minlength="3" maxlength="20" [(ngModel)]="signup.lastname" name="lastname"
+                    type="text" ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a last name">
+                    <span Style="margin-left:20px;" *ngIf="lastname.invalid && lastname.touched" id="inputGroup-sizing-sm" class="error">*lastname is not valid</span>
+                    </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">User Name</span>
+                <input required [(ngModel)]="signup.username" #username="ngModel" minlength="3" maxlength="20" name="username"
+                    type="text" ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a user name">
+                    <span Style="margin-left:20px;" *ngIf="username.invalid && username.touched" id="inputGroup-sizing-sm" class="error">*username is not valid</span>   
+                </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Email Id</span>
+                <input required #email="ngModel" minlength="3" maxlength="20" [(ngModel)]="signup.email" name="email"
+                    type="text" email ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a email id">
+                    <span Style="margin-left:20px;" *ngIf="email.invalid && email.touched" id="inputGroup-sizing-sm" class="error">*email id is not valid</span>
+                    </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">password</span>
+                <input required [(ngModel)]="signup.password" pattern="[A-Za-z0-9\d$@ ]*"  #password="ngModel" minlength="3" maxlength="20" name="password"
+                    type="password" ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a password">
+                    <span Style="margin-left:20px;" *ngIf="password.invalid && password.touched" id="inputGroup-sizing-sm" class="error">*password is not valid</span>   
+                </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <span class="active"> Role </span>
+            <div style="margin: 20px;" class="form-check">
+                <input [(ngModel)]="signup.role" value="user" ngModel class="form-check-input" type="radio"
+                    name="flexRadioDefault" id="flexRadioDefault1" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    User
+                </label>
+            </div>
+            <div style="margin: 20px;" class="form-check">
+                <input [(ngModel)]="signup.role" value="manager" ngModel class="form-check-input" type="radio"
+                    name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Manager
+                </label>
+            </div>
+        </div>
+
+        
+      
+    <br>
+    
+      
+
+    <div  (click)="submit()"  class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button [disabled]="userForm.invalid" class="btn btn-primary" type="button">Sign Up</button>
+    </div>
+
+    </form>
+</div> 

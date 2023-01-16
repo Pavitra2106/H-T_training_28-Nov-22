@@ -9,8 +9,10 @@ public interface IJobsService {
 	public Long saveJobs (Jobs jobs);
 	
 	public List<Jobs> getalljobs();
-	
-	//update job
+
 	public Jobs updateJobs(Jobs jobs, Long id);
 
+	public void updateJobAndSalary(Jobs jobs);
+
+	
 }

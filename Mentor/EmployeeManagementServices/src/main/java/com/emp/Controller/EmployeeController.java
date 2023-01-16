@@ -59,8 +59,9 @@ public class EmployeeController {
 		return new ResponseEntity<Employee>(employeeService.updateEmployee(employee, id), HttpStatus.OK);
 	}
 	
-	@PatchMapping("/updateJobSalary/{id}")
+	@PutMapping("/updateJobSalary/{id}")
 	public void updateJobSalary(@PathVariable("id") Long id ,@RequestBody Employee employee){
+		//System.out.println("~~~~~~~~emp~~~~~~~~~~~~~~~~~~~~~~~ "+ employee.getJob());
 		employeeService.updateJobSalary(employee, id);
 	}
 }

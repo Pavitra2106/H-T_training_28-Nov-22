@@ -1,5 +1,7 @@
 package com.user.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +17,7 @@ public class Employee {
 	private String lastname;
 	private String email;
 	private Integer salary;
-	private String job;
+	private List job;
 	
 	public Integer getEmpid() {
 		return empid;
@@ -65,17 +67,9 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public String getJob() {
-		return job;
-	}
-
-	public void setJob(String job) {
-		this.job = job;
-	}
-
 	
 	public Employee(Integer empid, Long userid, String firstname, String lastname, String email, Integer salary,
-			String job) {
+			List job) {
 		super();
 		this.empid = empid;
 		this.userid = userid;
@@ -88,6 +82,16 @@ public class Employee {
 
 	public Employee() {
 		super();
+	}
+
+	public Employee(Integer empid, Long userid, String firstname, String lastname, String email, Integer salary) {
+		super();
+		this.empid = empid;
+		this.userid = userid;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.salary = salary;
 	}
 	
 	

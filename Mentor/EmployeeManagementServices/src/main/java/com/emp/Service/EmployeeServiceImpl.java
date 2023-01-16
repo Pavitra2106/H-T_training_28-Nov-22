@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.emp.Entity.Employee;
+import com.emp.Repo.IEmployeeJobsRepo;
 import com.emp.Repo.IEmployeeRepo;
 import com.emp.exception.ResourceNotFoundException;
 
@@ -18,6 +19,8 @@ public class EmployeeServiceImpl implements IEmployeeService{
 	@Autowired
 	private IEmployeeRepo employeeRepo;
 	
+	@Autowired
+	private IEmployeeJobsRepo employeeJobsRepo;
 	@Override
 	public Integer saveEmployee(Employee employee) {
 		Employee saveEmployee =employeeRepo .save(employee);
@@ -26,8 +29,10 @@ public class EmployeeServiceImpl implements IEmployeeService{
 
 	@Override
 	public List<Employee> getAllEmployees() {
-		// TODO Auto-generated method stub
-		return employeeRepo.findAll();
+
+		//List jobs=employeeJobsRepo.findAll();
+		//List<Employee> empdata= employeeRepo.findAll();
+		return  employeeRepo.findAll();
 	}
 
 	@Override
@@ -39,7 +44,10 @@ public class EmployeeServiceImpl implements IEmployeeService{
 			empid=employee2.getEmpid();
 			break;
 		}
-		return employeeRepo.findById(empid);
+	//	List jobs=employeeJobsRepo.findByEmpid(empid);
+		Optional<Employee> emp= employeeRepo.findById(empid);
+		
+		return emp;
 	}
 	
 	@Override
@@ -75,14 +83,20 @@ public class EmployeeServiceImpl implements IEmployeeService{
 	public void updateJobSalary(Employee employee, Long id) {
 		List<Employee> employeedata=employeeRepo.findByUserid(id);
 		Integer empid = null;
+		System.out.println("~~~~~~~~emp~~~~~~~~~~~~~~~~~~~~~~~ "+ employee.getSalary());
 		for(Employee employee2:employeedata) {
 			empid=employee2.getEmpid();
 			break;
 		}
 		Employee existingEmployee = employeeRepo.findById(empid).orElseThrow(()
 				-> new ResourceNotFoundException("Employee","id",id));
-		existingEmployee.setJob(employee.getJob());
-		existingEmployee.setSalary(employee.getSalary());
+//		if(!(employee.getJob()==null)&&!(employee.getJob()=="")) {
+//		existingEmployee.setJob(employee.getJob());
+//		}
+		if(!(employee.getSalary()==null)) {
+			Integer totalsaly=existingEmployee.getSalary()+employee.getSalary();
+		existingEmployee.setSalary(totalsaly);
+		}
 		employeeRepo.save(existingEmployee);
 	}
 	

@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -40,7 +41,7 @@ public class SecurityController {
 	private UserDataService userDataService;
 	
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 	
 	@Autowired
 	private JWTUtility jwtUtility;
@@ -107,7 +108,7 @@ public class SecurityController {
 
 		//all users
 		@GetMapping("/allusers")
-		public List<User> getAllLibraryBooks() {
+		public List<User> getAllUsers() {
 			return userService.getAllUsers();
 		}
 		
@@ -151,5 +152,16 @@ public class SecurityController {
 			 return new ResponseEntity<>("Success",HttpStatus.OK);
 		}
 		
+		
+		@PutMapping("/updateJobAndSalary/user/{userid}")
+		public ResponseEntity<?> updateJobAndSalary( @PathVariable("userid") Long userid 
+				,@RequestBody Jobs jobs){
+			System.out.println("~~~~~~~~~updateJobAndSalary~~~~~~~~~~~~~~~~~~~~~~~~");
+			Boolean task=userService.updateJobAndSalary( jobs,  userid);
+			if(task) {
+				 return new ResponseEntity<>("Success",HttpStatus.OK);
+			}
+			 return new ResponseEntity<>("Fail",HttpStatus.BAD_REQUEST);
+		}
 
 }

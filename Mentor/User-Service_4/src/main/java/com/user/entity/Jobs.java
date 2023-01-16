@@ -6,18 +6,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Jobs {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String jobname;
+	@JsonFormat(pattern="HH:mm:ss")
 	private LocalTime startingtime;
+	@JsonFormat(pattern="HH:mm:ss")
 	private LocalTime endtime;
-	private Long profitvalue;
+	private Integer profitvalue;
 	private String applicablerole;
 	//@Enumerated(EnumType.STRING)
 	private String status;
+
 	public Long getId() {
 		return id;
 	}
@@ -42,10 +47,10 @@ public class Jobs {
 	public void setEndtime(LocalTime endtime) {
 		this.endtime = endtime;
 	}
-	public Long getProfitvalue() {
+	public Integer getProfitvalue() {
 		return profitvalue;
 	}
-	public void setProfitvalue(Long profitvalue) {
+	public void setProfitvalue(Integer profitvalue) {
 		this.profitvalue = profitvalue;
 	}
 	public String getApplicablerole() {
@@ -60,7 +65,7 @@ public class Jobs {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Jobs(Long id, String jobname, LocalTime startingtime, LocalTime endtime, Long profitvalue,
+	public Jobs(Long id, String jobname, LocalTime startingtime, LocalTime endtime, Integer profitvalue,
 			String applicablerole, String status) {
 		super();
 		this.id = id;

@@ -1,11 +1,15 @@
 package com.jobs.service;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.jobs.exception.*;
 import com.jobs.entity.Jobs;
+import com.jobs.entity.Status;
 import com.jobs.repo.JobsRepo;
 
 @Service
@@ -41,5 +45,28 @@ public class JobsService implements IJobsService {
 			jobsRepo.save(existingjobsmodule);
 			return existingjobsmodule;
 		}
+
+	@Override
+	public void updateJobAndSalary(Jobs jobs) {
+		Jobs existingjobsmodule = jobsRepo.findById(jobs.getId()).orElseThrow(
+				() -> new ResourceNotFoundExceptionHandler("Jobs", "id", jobs.getId()));
+		
+		if(jobs.getStatus().equals(Status.inprogress)){
+			
+		existingjobsmodule.setJobstarttime(LocalDateTime.now());
+		}
+		if(jobs.getStatus().equals(Status.aborted)){
+			LocalDateTime tempDateTime = LocalDateTime.from( existingjobsmodule.getJobstarttime() );
+			long minutes = tempDateTime.until( LocalDateTime.now(), ChronoUnit.MINUTES );
+//			tempDateTime = tempDateTime.plusHours( minutes );
+//			int timediff=tempDateTime.getMinute();
+			if(minutes <=5) {
+			jobs.setStatus(Status.notstarted);
+			}
+		}
+		existingjobsmodule.setStatus(jobs.getStatus());
+		jobsRepo.save(existingjobsmodule);
+	}
+	
 	
 }
