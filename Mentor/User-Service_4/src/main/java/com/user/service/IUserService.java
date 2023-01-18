@@ -1,7 +1,9 @@
 package com.user.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.user.entity.Employee;
 import com.user.entity.Jobs;
 import com.user.entity.User;
 
@@ -15,6 +17,9 @@ public interface IUserService {
 	
 	//delete user
 	public void deleteUserDetail(Long id);
+	
+	// user by id
+	public Optional<User> getusersbyid(Long id);
 	
 	//update user
 	User updateUserDetail(User user, Long id);

@@ -10,6 +10,7 @@ import com.jobs.entity.Jobs;
 @Repository
 public interface JobsRepo extends JpaRepository<Jobs,Long> {
 	
-	List<Jobs> findByJobnameList(String userid);
-
+	List<Jobs> findByJobname(String userid);
+	
+	List<Jobs> findByApplicablerole(String role);
 }

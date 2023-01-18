@@ -35,6 +35,11 @@ public class JobsController {
 		return iJobsService.getalljobs();  
 	}
 	
+	@GetMapping("/allrolejobs/{role}")
+	public List<Jobs> getallrolejobs(@PathVariable("role") String role) {
+		return iJobsService.getallrolejobs(role);  
+	}
+	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Jobs> updateJobs(@PathVariable("id") Long id, @RequestBody Jobs jobs) {
 		return new ResponseEntity<Jobs>(iJobsService.updateJobs(jobs, id), HttpStatus.OK);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import User from 'src/app/Entity/User';
 import { UserServiceService } from 'src/app/Service/user-service.service';
 
@@ -10,28 +11,26 @@ import { UserServiceService } from 'src/app/Service/user-service.service';
 export class SingUpComponent implements OnInit {
   onSubmit(data: any) {
     console.log(data);
-
   }
-
   user : User = new User();
-
   submit() {
-    const observables = this.userservice.saveSignup
-    (this.user);
+   // alert("before "+ this.user.email);
+    const observables = this.userservice.saveSignup(this.user);
     observables.subscribe (
       (response:any) => {
         console.log(response);
         alert("submitted Successfully");
+        if(response.id !=''){
+          this.router.navigateByUrl('login')
+  
+        }
       }, function(error) {
         console.log(error);
         alert("Something went wrong, Please try again!")
       }
     )
   }
-
-  constructor(private userservice : UserServiceService) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private userservice : UserServiceService,private router:Router) { }
+  ngOnInit(): void {}
 
 }

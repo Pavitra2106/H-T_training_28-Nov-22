@@ -1,8 +1,10 @@
 package com.user.controller;
 
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -32,6 +35,7 @@ import com.user.service.UserService;
 import com.user.utility.JWTUtility;
 
 @RestController
+@CrossOrigin("http://localhost:4200/")
 public class SecurityController {
 	
 	@Autowired
@@ -76,8 +80,7 @@ public class SecurityController {
 		final UserDetails userDetails = userDataService.loadUserByUsername(jwtRequest.getUsername());
 		final String token = jwtUtility.generateToken(userDetails);
 		User loggedUser = iUserService.getUserByName(jwtRequest.getUsername());
-		return new ResponseEntity<>(new JwtResponse(token,  loggedUser.getUsername() , loggedUser.getRole().toString()),
-				HttpStatus.OK);
+		return new ResponseEntity<>(new JwtResponse(token,  loggedUser.getUsername()),HttpStatus.OK);
 	}
 	  //delete user
 	  @DeleteMapping("/delete/{id}")
@@ -95,15 +98,22 @@ public class SecurityController {
 		}
 		
 		//update user
-		@PutMapping("/update/{id}")
-		public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
-			 String url ="http://EMPLOYEE-SERVICE/update/"+id;
+		@GetMapping("/update/{id}/{firstname}/{lastname}/{email}")
+		public ResponseEntity<User> updateUser(@PathVariable("id") Long id,@PathVariable("firstname") String firstname,
+				@PathVariable("lastname") String lastname,@PathVariable("email") String email) {
+			 User userdata= new User();
+			 userdata.setId(id);
+			 userdata.setEmail(email);
+			 userdata.setFirstname(firstname);
+			 userdata.setLastname(lastname);
+			
+			String url ="http://EMPLOYEE-SERVICE/update/"+id;
 			    Employee employeedata= new Employee();
-				employeedata.setEmail(user.getEmail());
-				employeedata.setFirstname(user.getFirstname());
-				employeedata.setLastname(user.getLastname());
-				this.restTemplate.put(url, user);
-			return new ResponseEntity<User>(userService.updateUserDetail(user, id), HttpStatus.OK);
+				employeedata.setEmail(userdata.getEmail());
+				employeedata.setFirstname(userdata.getFirstname());
+				employeedata.setLastname(userdata.getLastname());
+				this.restTemplate.put(url, userdata);
+			return new ResponseEntity<User>(userService.updateUserDetail(userdata, id), HttpStatus.OK);
 		}
 
 		//all users
@@ -111,7 +121,14 @@ public class SecurityController {
 		public List<User> getAllUsers() {
 			return userService.getAllUsers();
 		}
-		
+		//getbyidusers   --notused
+		@GetMapping("/getusersbyid/{id}")
+		public List<User> getusersbyid(@PathVariable Long id) {
+			Optional<User> getIdData=userService.getusersbyid(id);
+			List<User> newgetIdData =getIdData.stream().collect(Collectors.toList());
+			 return newgetIdData;
+		}
+	//---------------------------notused----------------------	
 	  @GetMapping("/getemp/{id}")
 	    public Optional<Employee> getEmployee(@PathVariable Long id){
 		  String url ="http://EMPLOYEE-SERVICE/get/";
@@ -140,16 +157,35 @@ public class SecurityController {
 			  return this.restTemplate.getForObject(url,List.class);
 		}
 		
-		@PutMapping("/updatejob/{id}")
-		public ResponseEntity<?> updateJobs(@PathVariable("id") Long id, @RequestBody Jobs jobs) {
-			 String url ="http://JOBS-SERVICE/update/"+id;
+		@GetMapping("/available/jobs/{role}")
+		public List<Jobs> getallrolejobs(@PathVariable("role") String role) {
+			  String url ="http://JOBS-SERVICE/allrolejobs/"+role;
+			  return this.restTemplate.getForObject(url,List.class);
+		}
+		
+		@GetMapping("/updatejob/{id}/{jobname}/{startingtime}/{endtime}/{profitvalue}/{applicablerole}/{status}")
+		public ResponseEntity<?> updateJobs(@PathVariable("id") Long id,@PathVariable("jobname") String jobname,
+				@PathVariable("startingtime") String startingtime,@PathVariable("endtime") String endtime,
+				@PathVariable("profitvalue") Integer profitvalue,
+				@PathVariable("applicablerole") String applicablerole,@PathVariable("status") String status) {
+			 
+			Jobs jobs= new Jobs();
+			 jobs.setJobname(jobname);
+			 jobs.setStartingtime(LocalTime.parse(startingtime));
+      		 jobs.setEndtime(LocalTime.parse(endtime));
+			 jobs.setProfitvalue(profitvalue);
+			 jobs.setApplicablerole(applicablerole);
+			 jobs.setStatus(status);
+			 
+			String url ="http://JOBS-SERVICE/update/"+id;
 			 try {
 			 this.restTemplate.put(url, jobs);
 			 }
 			 catch (Exception e) {
+				 
 				 return new ResponseEntity<>("Fail",HttpStatus.BAD_REQUEST);
 			}
-			 return new ResponseEntity<>("Success",HttpStatus.OK);
+			 return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
 		

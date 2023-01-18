@@ -1,0 +1,29 @@
+<h3 class="display-8"
+  style="text-align: center; border-color: white; border-style: 
+  double; background-color: #0d6efd; color: white;margin-top: 0px; margin-left: 10px; margin-right: 10px;">
+  Job List</h3>
+<ol Style ="padding-left: 100px; padding-right: 100px; padding-top: 5px;"
+ class="list-group list-group-numbered">
+  <li *ngFor="let u of job, index as i" class="list-group-item d-flex justify-content-between
+   align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">
+        <a href="updatejob/{{u.id}}/{{u.jobname}}/{{u.startingtime}}/{{u.endtime}}/{{u.profitvalue}}/{{u.applicablerole}}/{{u.status}}" 
+        class="text-warning stretched-link" > Job Name- {{u.jobname}}</a>
+        <br>        
+        </div>
+        <div class="row g-2" style="color: crimson; margin-top: 4px;">
+            Applicable Role- {{u.applicablerole}}
+            <br>
+            Job Status- {{u.status}}
+            <br>
+            Profit Value -> {{u.profitvalue}}
+        </div>
+    </div>
+    <button (click)="instart(u,i)" type="button" class="btn btn-outline-danger">Start</button>
+    
+    <button (click)="completed(u,i)" type="button" class="btn btn-outline-danger">Completed</button>
+    
+    <button (click)="aborted(u,i)" type="button" class="btn btn-outline-danger">Aborted</button>
+  </li>
+</ol>

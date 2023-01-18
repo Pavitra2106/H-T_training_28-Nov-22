@@ -12,6 +12,11 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { AllUserComponent } from './Components/all-user/all-user.component';
 import { UsercreatejobComponent } from './Components/usercreatejob/usercreatejob.component';
 import { AllUserInfoActionComponent } from './Components/all-user-info-action/all-user-info-action.component';
+import { HomeComponent } from './Components/home/home.component';
+import { AllEmpListComponent } from './Components/all-emp-list/all-emp-list.component';
+import { AllJobListComponent } from './Components/all-job-list/all-job-list.component';
+import { JobUpdateComponent } from './Components/job-update/job-update.component';
+import { AllEmpjobListComponent } from './Components/all-empjob-list/all-empjob-list.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +28,18 @@ import { AllUserInfoActionComponent } from './Components/all-user-info-action/al
     AllUserComponent,
     UsercreatejobComponent,
     AllUserInfoActionComponent,
+    HomeComponent,
+    AllEmpListComponent,
+    AllJobListComponent,
+    JobUpdateComponent,
+    AllEmpjobListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

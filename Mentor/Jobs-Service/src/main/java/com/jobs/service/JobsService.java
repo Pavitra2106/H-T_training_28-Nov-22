@@ -28,6 +28,11 @@ public class JobsService implements IJobsService {
 	public List<Jobs> getalljobs() {
 		return jobsRepo.findAll() ;
 	}
+	@Override
+	public List<Jobs> getallrolejobs(String role){
+		
+		return jobsRepo.findByApplicablerole(role) ;
+	}
 	
 	//update jobs
 	@Override
@@ -71,13 +76,13 @@ public class JobsService implements IJobsService {
 	@Override
 	public Boolean jobtimeckeck(String currentjob, String newjob) {
 		
-		List<Jobs> job=jobsRepo.findByJobnameList(currentjob);
+		List<Jobs> job=jobsRepo.findByJobname(currentjob);
 		LocalTime endtime = null;
 		for(Jobs jobdata:job) {
 			endtime=jobdata.getEndtime();
 			break;
 		}
-		List<Jobs> job2=jobsRepo.findByJobnameList(newjob);
+		List<Jobs> job2=jobsRepo.findByJobname(newjob);
 		LocalTime starttime = null;
 		for(Jobs jobdata:job2) {
 			starttime=jobdata.getStartingtime();

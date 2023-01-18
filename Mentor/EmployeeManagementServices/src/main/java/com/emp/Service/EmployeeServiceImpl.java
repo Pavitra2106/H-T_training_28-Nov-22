@@ -86,7 +86,12 @@ public class EmployeeServiceImpl implements IEmployeeService{
 		existingEmployee.setJob(employee.getJob());
 		}
 		if(!(employee.getSalary()==null)) {
-			Integer totalsaly=existingEmployee.getSalary()+employee.getSalary();
+			Integer totalsaly=0;
+			if(existingEmployee.getSalary() !=null) {
+				totalsaly=existingEmployee.getSalary();
+			}
+			totalsaly=totalsaly+employee.getSalary();
+			
 		existingEmployee.setSalary(totalsaly);
 		}
 		employeeRepo.save(existingEmployee);

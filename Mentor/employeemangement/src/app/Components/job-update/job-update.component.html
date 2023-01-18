@@ -1,0 +1,62 @@
+<div class="container" style="background-image: 
+url('https://thumbs.dreamstime.com/z/update-word-concept-cubes-143450663.jpg');
+background-size: 100%;" >
+    <div style="margin-left: 40%; margin-right: 30%;" >
+    <h2 style="color: rgb(219, 19, 19);"> Update Job </h2></div>
+    <form #jobForm="ngForm" (ngSubmit)="onSubmit(jobForm.value)">
+
+        <div class="row g-2 " style="margin-left: 30%;">
+            <label for="inputauthor" style="color: black"
+             class="col-sm-2 col-form-label"><b>Job Id</b></label>
+            <div class="col-md-4">
+              <input  [(ngModel)]="id" name="id" disabled=disabled value=id
+              type="id" class="form-control" id="id" >
+            </div>
+          </div>
+
+          <div class="row g-2" style="margin-left: 30%;">
+            <label for="inputauthor" style="color: black;"
+            class="col-sm-2 col-form-label"><b>Job Name</b></label>
+            <div class="col-md-4">
+              <input  [(ngModel)]="jobname" name="jobname" value={{jobname}}
+              type="jobname" class="form-control" id="jobname">
+            </div>
+          </div>
+          <div class="row g-2" style="margin-left: 30%;">
+            <label for="inputprice"style="color: black;" class="col-sm-2 col-form-label"><b>Starting Time</b></label>
+            <div class="col-md-4">
+              <input [(ngModel)]="startingtime" name="startingtime" type="startingtime"  value={{startingtime}}
+              class="form-control" id="startingtime">
+            </div>
+          </div>
+          <div class="row g-2" style="margin-left: 30%;">
+            <label for="inputgenre" style="color: black;"class="col-sm-2 col-form-label"><b>End Time</b></label>
+            <div class="col-md-4">
+              <input [(ngModel)]="endtime" name="endtime" value={{endtime}} type="endtime" class="form-control" id="endtime">
+            </div>
+          </div>
+          <div class="row g-2" style="margin-left: 30%;">
+            <label for="inputgenre" style="color: black;"class="col-sm-2 col-form-label"><b>Profit Value</b></label>
+            <div class="col-md-4">
+              <input [(ngModel)]="profitvalue" name="profitvalue" value={{profitvalue}} type="profitvalue" class="form-control" id="profitvalue">
+            </div>
+          </div>
+          <div class="row g-2" style="margin-left: 30%;">
+            <label for="inputgenre" style="color: black;"class="col-sm-2 col-form-label"><b>Applicable Role</b></label>
+            <div class="col-md-4">
+              <input [(ngModel)]="applicablerole" name="applicablerole" value={{applicablerole}} type="applicablerole" class="form-control" id="applicablerole">
+            </div>
+          </div>
+          <div class="row g-2" style="margin-left: 30%;">
+            <label for="inputgenre" style="color: black;"class="col-sm-2 col-form-label"><b>Job Status</b></label>
+            <div class="col-md-4">
+              <input [(ngModel)]="status" name="status" value={{status}} type="status" class="form-control" id="status">
+            </div>
+          </div>
+          <br>
+        <div style="margin-left: 30%; margin-right: 30%;" (click)="submit()"  class="d-grid gap-0 d-md-flex justify-content-md-end">
+        <button [disabled]="jobForm.invalid" class="btn btn-primary" type="button"><b>Update Job</b></button>
+    </div>
+
+    </form>
+</div> 

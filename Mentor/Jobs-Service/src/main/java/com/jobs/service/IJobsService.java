@@ -9,6 +9,8 @@ public interface IJobsService {
 	public Long saveJobs (Jobs jobs);
 	
 	public List<Jobs> getalljobs();
+	
+	public List<Jobs> getallrolejobs(String role);
 
 	public Jobs updateJobs(Jobs jobs, Long id);
 
