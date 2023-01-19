@@ -4,6 +4,7 @@ package com.user.controller;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,9 @@ import com.user.entity.Employee;
 import com.user.entity.Jobs;
 import com.user.entity.JwtRequest;
 import com.user.entity.JwtResponse;
+import com.user.entity.Role;
 import com.user.entity.User;
+import com.user.model.ERoles;
 import com.user.service.IUserService;
 import com.user.service.UserDataService;
 import com.user.service.UserService;
@@ -80,7 +83,13 @@ public class SecurityController {
 		final UserDetails userDetails = userDataService.loadUserByUsername(jwtRequest.getUsername());
 		final String token = jwtUtility.generateToken(userDetails);
 		User loggedUser = iUserService.getUserByName(jwtRequest.getUsername());
-		return new ResponseEntity<>(new JwtResponse(token,  loggedUser.getUsername()),HttpStatus.OK);
+		String rolename=null;
+		for (Role name :loggedUser.getRoles()) {
+	    	  rolename=name.getName().toString();
+	    	 break;
+	     }
+		return new ResponseEntity<>(new JwtResponse(token,loggedUser.getUsername(),loggedUser.getId(),rolename)
+				,HttpStatus.OK);
 	}
 	  //delete user
 	  @DeleteMapping("/delete/{id}")
@@ -115,6 +124,17 @@ public class SecurityController {
 				this.restTemplate.put(url, userdata);
 			return new ResponseEntity<User>(userService.updateUserDetail(userdata, id), HttpStatus.OK);
 		}
+		
+		//update userrole
+		@GetMapping("/update/userrole/{role}/{id}")
+		public ResponseEntity<User> updateUser(@PathVariable("role") String role,@PathVariable("id") Long id) {
+//			 User userdata= new User();
+//			 Set<Role> roles =(Set<Role>) new Role(); 
+//			 ((Role) roles).setName(ERoles.valueOf(role));
+//			 userdata.setRoles(roles);
+			return new ResponseEntity<User>(userService.updateUserRole(role, id), HttpStatus.OK);
+		}
+		
 
 		//all users
 		@GetMapping("/allusers")
@@ -189,13 +209,14 @@ public class SecurityController {
 		}
 		
 		
-		@PutMapping("/updateJobAndSalary/user/{userid}")
-		public ResponseEntity<?> updateJobAndSalary( @PathVariable("userid") Long userid 
+		@PutMapping("/updateJobAndSalary/user/{userid}/{jobstatus}")
+		public ResponseEntity<?> updateJobAndSalary( @PathVariable("userid") Long userid ,@PathVariable("jobstatus") String jobstatus 
 				,@RequestBody Jobs jobs){
-			System.out.println("~~~~~~~~~updateJobAndSalary~~~~~~~~~~~~~~~~~~~~~~~~");
+			jobs.setStatus(jobstatus);
+			System.out.println("~~~~~~~~~updateJobAndSalary~~~~~~~~~~~~~"+userid+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+jobstatus);
 			Boolean task=userService.updateJobAndSalary( jobs,  userid);
 			if(task) {
-				 return new ResponseEntity<>("Success",HttpStatus.OK);
+				 return new ResponseEntity<>(task ,HttpStatus.OK);
 			}
 			 return new ResponseEntity<>("Fail",HttpStatus.BAD_REQUEST);
 		}

@@ -90,7 +90,32 @@ public class UserService implements IUserService {
 		iUserRepo.save(existingUser);
 		return existingUser;
 	}
+	
+	@Override
+	public User updateUserRole(String role, Long id) {
+		User existingUser = iUserRepo.findById(id).orElseThrow(
+				() -> new ResourceNotFoundExceptionHandler("User", "id", id));
+		
+		Set<Role> roles = new HashSet<>();	 
+//		 for (Role name : user.getRoles()) {
+			 //String rolename=role;
+			if(role.equals("manager")) {
+				Role adminRole = iRoleRepo.findByName(ERoles.manager)
+						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+				roles.add(adminRole);
+			}
+			else {
+			
+				Role userRole = iRoleRepo.findByName(ERoles.user)
+						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+				roles.add(userRole);
+			}
 
+		//}
+		existingUser.setRoles(roles);
+		iUserRepo.save(existingUser);
+		return existingUser;
+	}
 	@Override
 	public List<User> getAllUsers() {
 		return iUserRepo.findAll();
@@ -106,17 +131,20 @@ public class UserService implements IUserService {
 		    	  rolename=name.getName().toString();
 		    	 break;
 		     }
-		     //System.out.println("~~~~~~~~~~~~rolematch~~~~"+rolename+"~~~~"+jobs.getApplicablerole());
+		   // System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~rolematch~~~~"+rolename+"~~~~"+jobs.getApplicablerole());
 		if(rolename.equals(jobs.getApplicablerole())) {
 			
-			//System.out.println("~~~~~~~~~~~~rolematch~~~~");
+			//System.out.println("~~~~~~~~~~~~rolematch~~~~ "+jobs.getStatus());
 			if(jobs.getStatus().equals("inprogress")) { 
+				//System.out.println("~~~~~~~~~~~~Status~~~~");
 				//job eligibalty
 				String url0 ="http://EMPLOYEE-SERVICE/jobckeck/"+userid;
 		        String currentJob=restTemplate.getForObject(url0, String.class);  
 		        if(currentJob!=null) {
+		        	// System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~currentJob~~~~"+currentJob);
 		        String urljob ="http://JOBS-SERVICE/jobtimeckeck/"+currentJob+"/"+jobs.getJobname();
 		        Boolean jobaccess=  restTemplate.getForObject(urljob,Boolean.class);
+		       // System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~jobaccess~~~~"+jobaccess);
 		        if(jobaccess) {
 		        	return false;
 		        }
@@ -149,6 +177,7 @@ public class UserService implements IUserService {
 		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
 		        // restTemplate.put(urljob,jobs);
 			}
+			// System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~");
 			 String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
 		      restTemplate.put(urljob,jobs);
 		}

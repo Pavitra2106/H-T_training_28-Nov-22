@@ -22,7 +22,10 @@ public interface IUserService {
 	public Optional<User> getusersbyid(Long id);
 	
 	//update user
-	User updateUserDetail(User user, Long id);
+	public User updateUserDetail(User user, Long id);
+	
+	//update userrole
+	public User updateUserRole(String role, Long id);
 	
 	//Register user(view users)
 	public List<User> getAllUsers();

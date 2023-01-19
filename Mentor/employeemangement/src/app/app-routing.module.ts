@@ -9,6 +9,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { JobUpdateComponent } from './Components/job-update/job-update.component';
 import { LoginComponent } from './Components/login/login.component';
 import { SingUpComponent } from './Components/sing-up/sing-up.component';
+import { UpdateRoleComponent } from './Components/update-role/update-role.component';
 import { UsercreatejobComponent } from './Components/usercreatejob/usercreatejob.component';
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:"jobadd", component:UsercreatejobComponent} ,
   {path:"joblist", component:AllJobListComponent},
   {path:"updatejob/:id/:jobname/:startingtime/:endtime/:profitvalue/:applicablerole/:status", component:JobUpdateComponent},
-  {path:"empjoblist", component:AllEmpjobListComponent}
+  {path:"empjoblist", component:AllEmpjobListComponent},
+  {path:"updaterole/:id", component:UpdateRoleComponent}
 ];
 
 @NgModule({

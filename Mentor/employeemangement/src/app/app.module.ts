@@ -17,6 +17,7 @@ import { AllEmpListComponent } from './Components/all-emp-list/all-emp-list.comp
 import { AllJobListComponent } from './Components/all-job-list/all-job-list.component';
 import { JobUpdateComponent } from './Components/job-update/job-update.component';
 import { AllEmpjobListComponent } from './Components/all-empjob-list/all-empjob-list.component';
+import { UpdateRoleComponent } from './Components/update-role/update-role.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AllEmpjobListComponent } from './Components/all-empjob-list/all-empjob-
     AllJobListComponent,
     JobUpdateComponent,
     AllEmpjobListComponent,
+    UpdateRoleComponent,
   ],
   imports: [
     BrowserModule,

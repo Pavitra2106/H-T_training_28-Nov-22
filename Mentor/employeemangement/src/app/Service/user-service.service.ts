@@ -84,5 +84,54 @@ export class UserServiceService {
   getempjoblist(applicablerole: String) {
     return this.http.get(BASE_URL + "/available/jobs/"+applicablerole);
   }
+  
+  startjob(job :{    
+    id:Number;
+    applicablerole: String;
+    jobname: String;
+  },userid: Number,
+  status: String) 
+  {
+    // alert("data from token "  + userid);
+    // alert("data from token id1 "  + startjob1.id);
+     //alert("data from token status "  + status);
+    // alert("data from token applicablerole "  + startjob1.applicablerole);
+     //alert("data from token jobname "  + job.jobname);
+    return this.http.put(BASE_URL + "/updateJobAndSalary/user/"+userid+"/"+status, job);
+  }
+  completedjob(job :{    
+    id:Number;
+    applicablerole: String;
+    profitvalue: String;
+  },userid: Number,
+  status: String) 
+  {
+    // alert("data from token "  + userid);
+    //  alert("data from token status "  + status);
+    // alert("data from token applicablerole "  + job.applicablerole);
+    //  alert("data from token jobname "  + job.profitvalue);
+    return this.http.put(BASE_URL + "/updateJobAndSalary/user/"+userid+"/"+status, job);
+  }
+
+  abortedjob(job :{    
+    id:Number;
+    applicablerole: String;
+  },userid: Number,
+  status: String) 
+  {
+    // alert("data from token "  + userid);
+    //  alert("data from token status "  + status);
+    // alert("data from token applicablerole "  + job.applicablerole);
+    return this.http.put(BASE_URL + "/updateJobAndSalary/user/"+userid+"/"+status, job);
+  }
+  Updateuserrole(user:{
+    role:String;
+  },userid: Number)
+  {
+    // alert("data from user.role "  + user.role);
+    //  alert("data from  userid "  + userid);
+    return this.http.get(BASE_URL + "/update/userrole/"+user.role+"/"+userid);
+  }
+
   constructor(private http: HttpClient) { }
 }
