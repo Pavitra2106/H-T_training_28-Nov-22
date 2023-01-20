@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   onSubmit(data: any) {
     console.log(data);
 }
+constructor(private userService : UserServiceService ,private router:Router , private tokendata :TokenstorageService) { }
+
 title:String = "please fill the form below"
 user : User = new User();
 
@@ -48,7 +50,6 @@ public SignupRedirect(){
   this.router.navigateByUrl('/signupform')
 }
 
-constructor(private userService : UserServiceService ,private router:Router , private tokendata :TokenstorageService) { }
 
   ngOnInit(): void {
   }
