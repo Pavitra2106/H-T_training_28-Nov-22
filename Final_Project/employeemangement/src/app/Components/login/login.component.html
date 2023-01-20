@@ -1,0 +1,29 @@
+<div class="container" style="background-image: 
+url('https://as1.ftcdn.net/v2/jpg/01/22/71/96/1000_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO.jpg');
+background-size: 100%;" >
+    <div style="margin-left: 45%; margin-right: 30%;" >
+        <h2 style="color: rgb(219, 19, 19);"> Log IN </h2></div>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+       <div class="form-group" style="margin-left: 30%; margin-right: 30%;">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">User Name</span>
+                <input required [(ngModel)]="user.username" #username="ngModel" minlength="3" maxlength="20" name="username"
+                    type="text" ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a user name">
+                    <span Style="margin-left:20px;" *ngIf="username.invalid && username.touched" id="inputGroup-sizing-sm" class="error" style="color: Red;">*username is not valid</span>   
+                </div>
+        </div>
+        <div class="form-group" style="margin-left: 30%; margin-right: 30%;">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">password</span>
+                <input required [(ngModel)]="user.password" pattern="[A-Za-z0-9\d$@ ]*"  #password="ngModel" minlength="3" maxlength="20" name="password"
+                    type="password" ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a password">
+                    <span Style="margin-left:20px;" *ngIf="password.invalid && password.touched" id="inputGroup-sizing-sm" class="error" style="color: Red;">*password is not valid</span>   
+                </div>
+        </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-left: 30%; margin-right: 30%;">
+         <button [disabled]="userForm.invalid" (click)="login()" class="btn btn-primary" type="button">Login</button>
+            </div>
+    </form>
+</div> 

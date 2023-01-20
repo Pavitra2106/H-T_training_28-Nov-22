@@ -1,0 +1,53 @@
+<div style="background-image: 
+url('https://www.aihr.com/wp-content/uploads/employee-data-collection-cover.png');
+margin-left: 10px; margin-right: 10px; background-size: 100%;">
+<div style="text-align: center; margin-left: 350px; margin-right: 350px; background-color: pink">
+<h2 style="text-align: center; background-color: brown; color: pink;" >User Info</h2>
+<form class="row gy-1 gx-1 align-items-center">
+    <li *ngFor="let u of employee">
+    <div class="row g-2">
+      <label for="inputauthor" style="color: red;"
+       class="col-sm-5 col-form-label">Emp Id</label>
+      <div class="col-md-6">
+        <input  [(ngModel)]="u.empid" name="id" disabled=disabled value={{u.empid}}
+        type="id" class="form-control" id="id" >
+      </div>
+    </div>
+    <div class="row g-2">
+      <label for="inputauthor" style="color: red;"
+      class="col-sm-5 col-form-label">First Name</label>
+      <div class="col-md-6">
+        <input  [(ngModel)]="u.firstname" name="firstname" value={{u.firstname}}
+        type="firstname" class="form-control" id="firstname">
+      </div>
+    </div>
+    <div class="row g-2">
+      <label for="inputprice"style="color: red;" class="col-sm-5 col-form-label">Last Name</label>
+      <div class="col-md-6">
+        <input [(ngModel)]="u.lastname" name="lastname" type="lastname"  value={{u.lastname}}
+        class="form-control" id="lastname">
+      </div>
+    </div>
+    <div class="row g-2">
+      <label for="inputgenre" style="color: red;"class="col-sm-5 col-form-label">User Email</label>
+      <div class="col-md-6">
+        <input [(ngModel)]="u.email" name="email" value={{u.email}} type="email" class="form-control" id="email">
+      </div>
+    </div>
+    <div class="row g-2">
+        <label for="inputgenre" style="color: red;"class="col-sm-5 col-form-label">Job</label>
+        <div class="col-md-6">
+          <input [(ngModel)]="u.job" name="job" value={{u.job}} type="job" class="form-control" id="job">
+        </div>
+      </div>
+      <div class="row g-2">
+        <label for="inputgenre" style="color: red;"class="col-sm-5 col-form-label">Salary</label>
+        <div class="col-md-6">
+          <input [(ngModel)]="u.salary" name="salary" value={{u.salary}} type="salary" class="form-control" id="salary">
+        </div>
+      </div>
+      <br>
+</li>
+   </form>
+</div>
+</div>

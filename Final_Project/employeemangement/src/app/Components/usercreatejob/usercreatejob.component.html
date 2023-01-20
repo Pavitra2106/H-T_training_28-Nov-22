@@ -1,0 +1,69 @@
+<div class="container" style="background-image: 
+url('https://challenges.eciu.org/.uc/if5c496fa0103a9dd020063c9aa02c0ab1a8f99f3a7b60801e3ee02c0018041/gender-imbalance-1.png');
+background-size: 100%;" >
+    <div style="margin-left: 40%; margin-right: 30%;" >
+    <h2 style="color: rgb(219, 19, 19);"> Create New Job </h2></div>
+    <form #jobForm="ngForm" (ngSubmit)="onSubmit(jobForm.value)">
+
+        <div class="form-group" style="margin-left: 30%; margin-right: 30%;">
+            <div class="input-group input-group-sm mb-0">
+                <span class="input-group-text" id="inputGroup-sizing-sm"><b>Job Name</b></span>
+                <input  required #jobname="ngModel" minlength="3" maxlength="20" [(ngModel)]="job.jobname" name="jobname"
+                    type="text" ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a Job Name">
+                    <span Style="margin-left:20px;" *ngIf="jobname.invalid && jobname.touched" id="inputGroup-sizing-sm" class="error">*jobname is not valid</span>
+                    </div>
+        </div>
+        <br>
+        <div class="form-group" style="margin-left: 30%; margin-right: 30%;" >
+            <div class="input-group input-group-sm mb-0">
+                <span class="input-group-text" id="inputGroup-sizing-sm"><b>Starting Time</b></span>
+                <input required #startingtime="ngModel" minlength="3" maxlength="20" [(ngModel)]="job.startingtime" name="startingtime"
+                    type="text" ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Starting Time Eg- 00:00:00">
+                    <span Style="margin-left:20px;" *ngIf="startingtime.invalid && startingtime.touched" id="inputGroup-sizing-sm" class="error">*startingtime is not valid</span>
+                    </div>
+        </div>
+        <br>
+
+        <div class="form-group" style="margin-left: 30%; margin-right: 30%;" >
+            <div class="input-group input-group-sm mb-0">
+                <span class="input-group-text" id="inputGroup-sizing-sm"><b>End Time</b></span>
+                <input required [(ngModel)]="job.endtime" #endtime="ngModel" minlength="3" maxlength="20" name="endtime"
+                    type="text" ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="End Time Eg- 00:00:00">
+                    <span Style="margin-left:20px;" *ngIf="endtime.invalid && endtime.touched" id="inputGroup-sizing-sm" class="error">*endtime is not valid</span>   
+                </div>
+        </div>
+        <br>
+
+        <div class="form-group" style="margin-left: 30%; margin-right: 30%;" >
+            <div class="input-group input-group-sm mb-0">
+                <span class="input-group-text" id="inputGroup-sizing-sm"><b>Profit Value</b></span>
+                <input required #profitvalue="ngModel" minlength="3" maxlength="20" [(ngModel)]="job.profitvalue" name="profitvalue"
+                    type="text"  ngModel class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a Profit Value">
+                    <span Style="margin-left:20px;" *ngIf="profitvalue.invalid && profitvalue.touched" id="inputGroup-sizing-sm" class="error">*profitvalue  is not valid</span>
+                    </div>
+        </div>
+        <br>
+		<span class="active" style="color:black; margin:30% ;" ><b> Applicable Role </b></span>
+<div class="form-check" style="margin-left: 45%; margin-right: 40%;">
+  <input [(ngModel)]="job.applicablerole" value=user ngModel class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">
+    <b> User</b>
+  </label>
+</div>
+<div class="form-check" style="margin-left: 45%;">
+  <input [(ngModel)]="job.applicablerole" value=manager  ngModel class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    <b> Manager</b>
+  </label>
+</div>
+<br>
+        <div style="margin-left: 30%; margin-right: 30%;" (click)="submit()"  class="d-grid gap-0 d-md-flex justify-content-md-end">
+        <button [disabled]="jobForm.invalid" class="btn btn-primary" type="button"><b>Add Job</b></button>
+    </div>
+
+    </form>
+</div> 

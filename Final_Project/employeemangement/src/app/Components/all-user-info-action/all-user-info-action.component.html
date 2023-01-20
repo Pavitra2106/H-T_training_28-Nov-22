@@ -1,0 +1,48 @@
+<div style="background-image: 
+url('https://www.aihr.com/wp-content/uploads/employee-data-collection-cover.png');
+margin-left: 10px; margin-right: 10px; background-size: 100%;">
+<div style="text-align: center; margin-left: 350px; margin-right: 350px; background-color: aqua;">
+<h2 style="text-align: center; background-color: brown; color: aqua;" >User Info</h2>
+<form class="row gy-1 gx-1 align-items-center">
+    <div class="row g-2">
+      <label for="inputauthor" style="color: red;"
+       class="col-sm-5 col-form-label">User Id</label>
+      <div class="col-md-6">
+        <input  [(ngModel)]="id" name="id" disabled=disabled value=id
+        type="id" class="form-control" id="id" >
+      </div>
+    </div>
+    <div class="row g-2">
+      <label for="inputauthor" style="color: red;"
+      class="col-sm-5 col-form-label">First Name</label>
+      <div class="col-md-6">
+        <input  [(ngModel)]="firstname" name="firstname" value={{firstname}}
+        type="firstname" class="form-control" id="firstname">
+      </div>
+    </div>
+    <div class="row g-2">
+      <label for="inputprice"style="color: red;" class="col-sm-5 col-form-label">Last Name</label>
+      <div class="col-md-6">
+        <input [(ngModel)]="lastname" name="lastname" type="lastname"  value={{lastname}}
+        class="form-control" id="lastname">
+      </div>
+    </div>
+    <div class="row g-2">
+      <label for="inputgenre" style="color: red;"class="col-sm-5 col-form-label">User Email</label>
+      <div class="col-md-6">
+        <input [(ngModel)]="email" name="email" value={{email}} type="email" class="form-control" id="email">
+      </div>
+    </div>
+       
+    <div style="margin-left: 10%;" class="col-auto" style="margin-left: 5%; margin-bottom: 4px;">
+    <button (click)="update()" type="submit" class="btn btn-primary">Update</button>
+  </div>
+  <div style="margin-left: 80%;" class="col-auto" style="margin-left: 5%; margin-bottom: 4px;">
+    <a href="updaterole/{{id}}" class="btn btn-primary" role="button" data-bs-toggle="button">Update Role</a>
+  </div>
+  <div class="col-auto" style="margin-left: 32%; margin-bottom: 4px;">
+    <button (click)="delete()" type="submit" class="btn btn-primary">Delete</button>
+  </div>
+  </form>
+</div>
+</div>
