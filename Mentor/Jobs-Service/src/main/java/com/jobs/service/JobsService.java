@@ -20,6 +20,7 @@ public class JobsService implements IJobsService {
 
 	@Override
 	public Long saveJobs(Jobs jobs) {
+		jobs.setStatus(Status.valueOf("notstarted"));
 		Jobs savedJobs = jobsRepo.save(jobs);
 		return savedJobs.getId();
 	}
@@ -65,10 +66,12 @@ public class JobsService implements IJobsService {
 			long minutes = tempDateTime.until( LocalDateTime.now(), ChronoUnit.MINUTES );
 //			tempDateTime = tempDateTime.plusHours( minutes );
 //			int timediff=tempDateTime.getMinute();
-			if(minutes <=5) {
+			if(minutes <=1) {
+				//System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~");
 			jobs.setStatus(Status.notstarted);
 			}
 		}
+		//System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~ " +jobs.getStatus());
 		existingjobsmodule.setStatus(jobs.getStatus());
 		jobsRepo.save(existingjobsmodule);
 	}
@@ -88,7 +91,10 @@ public class JobsService implements IJobsService {
 			starttime=jobdata.getStartingtime();
 			break;
 		}
-		if (endtime.isBefore(starttime)) {
+		//System.out.println("~~~~~starttime~~~~ "+starttime);
+		//System.out.println("~~~~~endtime~~~~ "+endtime);
+		if (endtime.isAfter(starttime) ) {
+			//System.out.println("~~~~~starttime~~~~ true ");
 		return true;
 		}
 		return false;

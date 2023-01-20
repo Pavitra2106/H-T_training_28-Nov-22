@@ -18,6 +18,8 @@ import { AllJobListComponent } from './Components/all-job-list/all-job-list.comp
 import { JobUpdateComponent } from './Components/job-update/job-update.component';
 import { AllEmpjobListComponent } from './Components/all-empjob-list/all-empjob-list.component';
 import { UpdateRoleComponent } from './Components/update-role/update-role.component';
+import { EmpInfoComponent } from './Components/emp-info/emp-info.component';
+import { JobSelectComponent } from './Components/job-select/job-select.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { UpdateRoleComponent } from './Components/update-role/update-role.compon
     JobUpdateComponent,
     AllEmpjobListComponent,
     UpdateRoleComponent,
+    EmpInfoComponent,
+    JobSelectComponent,
   ],
   imports: [
     BrowserModule,

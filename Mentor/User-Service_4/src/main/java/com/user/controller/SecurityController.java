@@ -128,10 +128,6 @@ public class SecurityController {
 		//update userrole
 		@GetMapping("/update/userrole/{role}/{id}")
 		public ResponseEntity<User> updateUser(@PathVariable("role") String role,@PathVariable("id") Long id) {
-//			 User userdata= new User();
-//			 Set<Role> roles =(Set<Role>) new Role(); 
-//			 ((Role) roles).setName(ERoles.valueOf(role));
-//			 userdata.setRoles(roles);
 			return new ResponseEntity<User>(userService.updateUserRole(role, id), HttpStatus.OK);
 		}
 		
@@ -148,11 +144,12 @@ public class SecurityController {
 			List<User> newgetIdData =getIdData.stream().collect(Collectors.toList());
 			 return newgetIdData;
 		}
-	//---------------------------notused----------------------	
 	  @GetMapping("/getemp/{id}")
-	    public Optional<Employee> getEmployee(@PathVariable Long id){
+	    public List<Employee> getEmployee(@PathVariable Long id){
 		  String url ="http://EMPLOYEE-SERVICE/get/";
-				  return this.restTemplate.getForObject(url+id,Optional.class);
+		  Optional<Employee> empdata=   this.restTemplate.getForObject(url+id,Optional.class);
+		  List<Employee> newgetIdData =empdata.stream().collect(Collectors.toList());
+				   return newgetIdData;
 	    }
 	    
 	  @GetMapping("/getallemp")
@@ -213,7 +210,7 @@ public class SecurityController {
 		public ResponseEntity<?> updateJobAndSalary( @PathVariable("userid") Long userid ,@PathVariable("jobstatus") String jobstatus 
 				,@RequestBody Jobs jobs){
 			jobs.setStatus(jobstatus);
-			System.out.println("~~~~~~~~~updateJobAndSalary~~~~~~~~~~~~~"+userid+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+jobstatus);
+			//System.out.println("~~~~~~~~~updateJobAndSalary~~~~~~~~~~~~~"+userid+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+jobstatus);
 			Boolean task=userService.updateJobAndSalary( jobs,  userid);
 			if(task) {
 				 return new ResponseEntity<>(task ,HttpStatus.OK);

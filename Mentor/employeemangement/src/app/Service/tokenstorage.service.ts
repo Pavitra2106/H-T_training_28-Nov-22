@@ -23,7 +23,9 @@ export class TokenstorageService {
     window.sessionStorage.removeItem(USER_ID);
     window.sessionStorage.setItem(USER_ID, id);
   }
-
+  public getToken(): string | null {
+    return window.sessionStorage.getItem(TOKEN_KEY);
+  }
   public getUserRole(): any {
     const userrole = window.sessionStorage.getItem(USER_ROLE);
     //alert("data from token "  +userrole );
@@ -39,5 +41,16 @@ export class TokenstorageService {
       return userid;
     }
       return {};
+  }
+  public getUsername(): any {
+    const username = window.sessionStorage.getItem(USER_KEY);
+    //alert("data from token "  +userrole );
+    if (username) {
+      return username;
+    }
+      return {};
+  }
+  signOut(): void {
+    window.sessionStorage.clear();
   }
 }

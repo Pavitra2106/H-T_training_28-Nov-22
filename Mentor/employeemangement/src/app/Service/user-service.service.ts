@@ -59,7 +59,7 @@ export class UserServiceService {
     profitvalue: Number ;
     applicablerole: String ;
     status: String  ;
-    LocalDateTime: String ;
+  
   }) {
    // alert("before service "+ job.jobname);
     return this.http.post(BASE_URL + "/createjobs", job);
@@ -90,7 +90,7 @@ export class UserServiceService {
     applicablerole: String;
     jobname: String;
   },userid: Number,
-  status: String) 
+   status: String) 
   {
     // alert("data from token "  + userid);
     // alert("data from token id1 "  + startjob1.id);
@@ -99,12 +99,12 @@ export class UserServiceService {
      //alert("data from token jobname "  + job.jobname);
     return this.http.put(BASE_URL + "/updateJobAndSalary/user/"+userid+"/"+status, job);
   }
-  completedjob(job :{    
+  completedjob(job:{    
     id:Number;
     applicablerole: String;
-    profitvalue: String;
-  },userid: Number,
-  status: String) 
+    profitvalue: Number;
+   },userid: Number,
+    status: String) 
   {
     // alert("data from token "  + userid);
     //  alert("data from token status "  + status);
@@ -132,6 +132,8 @@ export class UserServiceService {
     //  alert("data from  userid "  + userid);
     return this.http.get(BASE_URL + "/update/userrole/"+user.role+"/"+userid);
   }
-
+  getemployeebyid(userid:string){
+    return this.http.get(BASE_URL + "/getemp/"+userid);
+  }
   constructor(private http: HttpClient) { }
 }

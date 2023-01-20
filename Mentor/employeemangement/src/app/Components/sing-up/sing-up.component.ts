@@ -26,7 +26,7 @@ export class SingUpComponent implements OnInit {
         }
       }, function(error) {
         console.log(error);
-        alert("Something went wrong, Please try again!")
+        alert("Error, Please try again!")
       }
     )
   }

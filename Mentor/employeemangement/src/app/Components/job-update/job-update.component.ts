@@ -22,7 +22,26 @@ export class JobUpdateComponent implements OnInit {
 
   job : Job = new Job();
   submit(){
-   alert("before "+ this.jobname);
+   //alert("before "+ this.jobname);
+   if(this.jobname==''){
+    alert("Job Name is Null ");
+    }
+    if(this.startingtime==''){
+    alert("Start Time is Null ");
+  }
+  if(this.endtime==''){
+    alert("End Time is Null ");
+  }
+  if(this.profitvalue==''){
+    alert("Profitvalue is Null ");
+
+    }
+    if(this.applicablerole==''){
+    alert("Applicablerole is Null ");
+  }
+  if(this.status==''){
+    alert("Status is Null ");
+  }
    const observables = this.userService.Updatejob
    (this.id,this.jobname,this.startingtime,this.endtime,
     this.profitvalue,this.applicablerole,this.status);

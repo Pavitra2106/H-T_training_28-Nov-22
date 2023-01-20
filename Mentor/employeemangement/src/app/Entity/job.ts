@@ -6,5 +6,4 @@ export default class Job{
     profitvalue: Number  =0;
     applicablerole: String  ='';
     status: String  ='';
-    LocalDateTime: String  ='';
     }

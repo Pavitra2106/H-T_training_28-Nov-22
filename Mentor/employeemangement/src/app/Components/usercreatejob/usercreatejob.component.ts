@@ -14,7 +14,7 @@ export class UsercreatejobComponent implements OnInit {
   }
   job : Job = new Job();
   submit() { 
-     //alert("before "+ this.job.startingtime);
+     //alert("before "+ this.job.status);
     const observables = this.userservice.createjobs(this.job);
     observables.subscribe (
       (response:any) => {
@@ -26,11 +26,9 @@ export class UsercreatejobComponent implements OnInit {
         }
       }, function(error) {
         console.log(error);
-        alert("Something went wrong, Please try again!")
+        alert("Job Not Created, Please try again!")
       }
     )
-
-
   }
   constructor(private userservice : UserServiceService,private router:Router) { }
 

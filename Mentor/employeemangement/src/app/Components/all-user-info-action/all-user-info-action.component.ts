@@ -17,15 +17,24 @@ export class AllUserInfoActionComponent implements OnInit {
     email: String=this.route.snapshot.params['email'];
      user :User = new User();
   update() {
-     //alert("before "+ this.firstname);
+    if(this.firstname==''){
+    alert("First Name is Null ");
+
+    }
+    if(this.lastname==''){
+    alert("First Name is Null ");
+  }
+  if(this.email==''){
+    alert("Email is Null ");
+  }
      const observables = this.userService.Updateuser(this.id,this.firstname,this.lastname,this.email);
      observables.subscribe (
        (response:any) => {
          console.log(response);
-         alert("update Successfully");
+         alert("Update Successfully");
        }, function(error) {
          console.log(error);
-         alert("Something went wrong, Please try again!")
+         alert("Update Failed, Please try again!")
        }
      )
    }

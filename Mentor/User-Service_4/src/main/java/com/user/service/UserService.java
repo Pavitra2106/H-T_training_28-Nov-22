@@ -136,8 +136,7 @@ public class UserService implements IUserService {
 			
 			//System.out.println("~~~~~~~~~~~~rolematch~~~~ "+jobs.getStatus());
 			if(jobs.getStatus().equals("inprogress")) { 
-				//System.out.println("~~~~~~~~~~~~Status~~~~");
-				//job eligibalty
+
 				String url0 ="http://EMPLOYEE-SERVICE/jobckeck/"+userid;
 		        String currentJob=restTemplate.getForObject(url0, String.class);  
 		        if(currentJob!=null) {
@@ -154,8 +153,6 @@ public class UserService implements IUserService {
 				Employee employeedata= new Employee();
 				employeedata.setJob(jobs.getJobname());
 		        restTemplate.put(url, employeedata);  
-		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
-		        //restTemplate.put(urljob,jobs);
 		        
 			}
 			
@@ -165,8 +162,6 @@ public class UserService implements IUserService {
 				Employee employeedata= new Employee();
 				employeedata.setSalary(jobs.getProfitvalue());
 		        restTemplate.put(url, employeedata);
-		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
-		        //restTemplate.put(urljob,jobs);
 			}
 			else if(jobs.getStatus().equals("aborted")) { 
 				//System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -174,8 +169,6 @@ public class UserService implements IUserService {
 				Employee employeedata= new Employee();
 				employeedata.setJob(jobs.getJobname());
 		        restTemplate.put(url, employeedata);
-		       // String urljob ="http://JOBS-SERVICE/updatejobtimestatus";
-		        // restTemplate.put(urljob,jobs);
 			}
 			// System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~");
 			 String urljob ="http://JOBS-SERVICE/updatejobtimestatus";

@@ -29,16 +29,17 @@ login() {
       this.tokendata.saveToken(response.jwtToken);
         this.tokendata.saveUser(response.role,response.id,response.username);
       alert("Successfully login");
+      
       //alert("Successfully "+response.role );
       //alert("Successfully2 "+response.id );
       //alert("Successfully3 "+response.username);
       if(response.user !=''){
         this.router.navigateByUrl('')
-
+        //window.location.reload();
       }
     }, function(error) {
       console.log(error);
-      alert("Something went wrong, Please try again!")
+      alert("Wrong Id Or Password, Please try again!")
     }
   )
 }

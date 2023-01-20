@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.sun.istack.NotNull;
 import com.user.model.ERoles;
 
 @Entity
@@ -23,10 +24,15 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotNull
 	private String firstname;
+	@NotNull
 	private String lastname;
+	@NotNull
 	private String email;
+	@NotNull
 	private String username;
+	@NotNull
 	private String password;
 //	@Enumerated(EnumType.STRING)
 //	private Role role;

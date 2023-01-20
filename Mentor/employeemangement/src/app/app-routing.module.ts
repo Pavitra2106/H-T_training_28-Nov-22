@@ -5,7 +5,9 @@ import { AllEmpjobListComponent } from './Components/all-empjob-list/all-empjob-
 import { AllJobListComponent } from './Components/all-job-list/all-job-list.component';
 import { AllUserInfoActionComponent } from './Components/all-user-info-action/all-user-info-action.component';
 import { AllUserComponent } from './Components/all-user/all-user.component';
+import { EmpInfoComponent } from './Components/emp-info/emp-info.component';
 import { HomeComponent } from './Components/home/home.component';
+import { JobSelectComponent } from './Components/job-select/job-select.component';
 import { JobUpdateComponent } from './Components/job-update/job-update.component';
 import { LoginComponent } from './Components/login/login.component';
 import { SingUpComponent } from './Components/sing-up/sing-up.component';
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path:"joblist", component:AllJobListComponent},
   {path:"updatejob/:id/:jobname/:startingtime/:endtime/:profitvalue/:applicablerole/:status", component:JobUpdateComponent},
   {path:"empjoblist", component:AllEmpjobListComponent},
-  {path:"updaterole/:id", component:UpdateRoleComponent}
+  {path:"updaterole/:id", component:UpdateRoleComponent},
+  {path:"empinfo",component:EmpInfoComponent}, 
+  {path:"selectyourjob/:id/:jobname/:startingtime/:endtime/:profitvalue/:applicablerole/:status",component:JobSelectComponent} 
 ];
 
 @NgModule({

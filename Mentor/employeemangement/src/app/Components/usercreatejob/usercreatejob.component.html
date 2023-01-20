@@ -20,7 +20,7 @@ background-size: 100%;" >
                 <span class="input-group-text" id="inputGroup-sizing-sm"><b>Starting Time</b></span>
                 <input required #startingtime="ngModel" minlength="3" maxlength="20" [(ngModel)]="job.startingtime" name="startingtime"
                     type="text" ngModel class="form-control" aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a Starting Time">
+                    aria-describedby="inputGroup-sizing-sm" placeholder="Starting Time Eg- 00:00:00">
                     <span Style="margin-left:20px;" *ngIf="startingtime.invalid && startingtime.touched" id="inputGroup-sizing-sm" class="error">*startingtime is not valid</span>
                     </div>
         </div>
@@ -31,7 +31,7 @@ background-size: 100%;" >
                 <span class="input-group-text" id="inputGroup-sizing-sm"><b>End Time</b></span>
                 <input required [(ngModel)]="job.endtime" #endtime="ngModel" minlength="3" maxlength="20" name="endtime"
                     type="text" ngModel class="form-control" aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a End Time">
+                    aria-describedby="inputGroup-sizing-sm" placeholder="End Time Eg- 00:00:00">
                     <span Style="margin-left:20px;" *ngIf="endtime.invalid && endtime.touched" id="inputGroup-sizing-sm" class="error">*endtime is not valid</span>   
                 </div>
         </div>
@@ -43,30 +43,23 @@ background-size: 100%;" >
                 <input required #profitvalue="ngModel" minlength="3" maxlength="20" [(ngModel)]="job.profitvalue" name="profitvalue"
                     type="text"  ngModel class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" placeholder="Enter a Profit Value">
-                    <span Style="margin-left:20px;" *ngIf="profitvalue.invalid && profitvalue.touched" id="inputGroup-sizing-sm" class="error">*profitvalue id is not valid</span>
+                    <span Style="margin-left:20px;" *ngIf="profitvalue.invalid && profitvalue.touched" id="inputGroup-sizing-sm" class="error">*profitvalue  is not valid</span>
                     </div>
         </div>
         <br>
-		<div class="form-group" style="margin-left: 30%; margin-right: 30%;" >
-            <div class="input-group input-group-sm mb-0">
-                <span class="input-group-text" id="inputGroup-sizing-sm"><b>Applicable Role</b></span>
-                <input required #applicablerole="ngModel" minlength="3" maxlength="20" [(ngModel)]="job.applicablerole" name="applicablerole"
-                    type="text"  ngModel class="form-control" aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a Applicable Role">
-                    <span Style="margin-left:20px;" *ngIf="applicablerole.invalid && applicablerole.touched" id="inputGroup-sizing-sm" class="error">*applicablerole id is not valid</span>
-                    </div>
-        </div>
-		<br>
-		<div class="form-group" style="margin-left: 30%; margin-right: 30%;" >
-            <div class="input-group input-group-sm mb-0">
-                <span class="input-group-text" id="inputGroup-sizing-sm"><b>Status</b></span>
-                <input required #status="ngModel" minlength="3" maxlength="20" [(ngModel)]="job.status" name="status"
-                    type="text"  ngModel class="form-control" aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-sm" placeholder="Enter a Status">
-                    <span Style="margin-left:20px;" *ngIf="status.invalid && status.touched" id="inputGroup-sizing-sm" class="error">*status id is not valid</span>
-                    </div>
-        </div>
-
+		<span class="active" style="color:black; margin:30% ;" ><b> Applicable Role </b></span>
+<div class="form-check" style="margin-left: 45%; margin-right: 40%;">
+  <input [(ngModel)]="job.applicablerole" value=user ngModel class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">
+    <b> User</b>
+  </label>
+</div>
+<div class="form-check" style="margin-left: 45%;">
+  <input [(ngModel)]="job.applicablerole" value=manager  ngModel class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    <b> Manager</b>
+  </label>
+</div>
 <br>
         <div style="margin-left: 30%; margin-right: 30%;" (click)="submit()"  class="d-grid gap-0 d-md-flex justify-content-md-end">
         <button [disabled]="jobForm.invalid" class="btn btn-primary" type="button"><b>Add Job</b></button>

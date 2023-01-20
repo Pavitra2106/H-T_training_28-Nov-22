@@ -11,7 +11,7 @@ background-size: 100%;" >
                 <input  required #firstname="ngModel" minlength="3" maxlength="20" [(ngModel)]="user.firstname" name="firstname"
                     type="text" ngModel class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" placeholder="Enter a first name">
-                    <span Style="margin-left:20px;" *ngIf="firstname.invalid && firstname.touched" id="inputGroup-sizing-sm" class="error">*firstname is not valid</span>
+                    <span Style="margin-left:20px;" *ngIf="firstname.invalid && firstname.touched" id="inputGroup-sizing-sm" class="error" style="color: Red;">*firstname is not valid</span>
                     </div>
         </div>
         <br>
@@ -21,7 +21,7 @@ background-size: 100%;" >
                 <input required #lastname="ngModel" minlength="3" maxlength="20" [(ngModel)]="user.lastname" name="lastname"
                     type="text" ngModel class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" placeholder="Enter a last name">
-                    <span Style="margin-left:20px;" *ngIf="lastname.invalid && lastname.touched" id="inputGroup-sizing-sm" class="error">*lastname is not valid</span>
+                    <span Style="margin-left:20px;" *ngIf="lastname.invalid && lastname.touched" id="inputGroup-sizing-sm" class="error" style="color: Red;">*lastname is not valid</span>
                     </div>
         </div>
         <br>
@@ -32,7 +32,7 @@ background-size: 100%;" >
                 <input required [(ngModel)]="user.username" #username="ngModel" minlength="3" maxlength="20" name="username"
                     type="text" ngModel class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" placeholder="Enter a user name">
-                    <span Style="margin-left:20px;" *ngIf="username.invalid && username.touched" id="inputGroup-sizing-sm" class="error">*username is not valid</span>   
+                    <span Style="margin-left:20px;" *ngIf="username.invalid && username.touched" id="inputGroup-sizing-sm" class="error" style="color: Red;">*username is not valid</span>   
                 </div>
         </div>
         <br>
@@ -43,7 +43,7 @@ background-size: 100%;" >
                 <input required #email="ngModel" minlength="3" maxlength="20" [(ngModel)]="user.email" name="email"
                     type="text" email ngModel class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" placeholder="Enter a email id">
-                    <span Style="margin-left:20px;" *ngIf="email.invalid && email.touched" id="inputGroup-sizing-sm" class="error">*email id is not valid</span>
+                    <span Style="margin-left:20px;" *ngIf="email.invalid && email.touched" id="inputGroup-sizing-sm" class="error" style="color: Red;">*email id is not valid</span>
                     </div>
         </div>
         <br>
@@ -54,7 +54,7 @@ background-size: 100%;" >
                 <input required [(ngModel)]="user.password" pattern="[A-Za-z0-9\d$@ ]*"  #password="ngModel" minlength="3" maxlength="20" name="password"
                     type="password" ngModel class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm" placeholder="Enter a password">
-                    <span Style="margin-left:20px;" *ngIf="password.invalid && password.touched" id="inputGroup-sizing-sm" class="error">*password is not valid</span>   
+                    <span Style="margin-left:20px;" *ngIf="password.invalid && password.touched" id="inputGroup-sizing-sm" class="error" style="color: Red;">*password is not valid</span>   
                 </div>
         </div>
 

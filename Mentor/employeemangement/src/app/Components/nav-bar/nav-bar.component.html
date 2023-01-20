@@ -7,48 +7,61 @@
           aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" style="color:white;" href="alluser"><b>All User</b></a>
+          <a class="navbar-brand" *ngIf="showAdmin" style="color:white;" href="alluser"><b>All User</b></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" style="color:white;" href="allEmp"><b>All Employee</b></a>
+          <a class="navbar-brand" *ngIf="showAdmin" style="color:white;" href="allEmp"><b>All Employee</b></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" style="color:white;" href="jobadd"><b>Add Job</b></a>
+          <a class="navbar-brand" *ngIf="showAdmin" style="color:white;" href="jobadd"><b>Add Job</b></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" style="color:white;" href="joblist"><b>All Jobs</b></a>
+          <a class="navbar-brand" *ngIf="showAdmin" style="color:white;" href="joblist"><b>All Jobs</b></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" style="color:white;" href="empjoblist"><b>All EMP Jobs</b></a>
+          <a class="navbar-brand"  *ngIf="showUser" style="color:white;" href="empinfo"><b>Your Info</b></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" style="color:white;" href="SignUp"><b>SignUp</b></a>
+          <a class="navbar-brand"  *ngIf="showUser" style="color:white;" href="empjoblist"><b>All EMP Jobs</b></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
            aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" style="color:white; margin-right: 1px;" href="login"><b>Login</b></a>
+          <a class="navbar-brand" *ngIf="!isLoggedIn" style="color:white;" href="SignUp"><b>SignUp</b></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+           aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" *ngIf="!isLoggedIn" style="color:white; margin-right: 1px;" href="login"><b>Login</b></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
           aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-        
+          <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn" >
+            <li class="nav-item" >
+              <a  class="nav-link" routerLink="profile" style="color: red; background-color:white;"><b>{{ username }}</b></a>
+            </li>
+            <li class="nav-item">
+              <a href="login" class="nav-link" (click)="logout()" style="color: red; background-color:white;"><b>LogOut</b></a>
+            </li>
+          </ul>
         </div>
       </nav>
