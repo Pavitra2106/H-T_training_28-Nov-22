@@ -101,6 +101,6 @@ public class Jobs {
 				+ ", profitvalue=" + profitvalue + ", applicablerole=" + applicablerole + ", status=" + status
 				+ ", jobstarttime=" + jobstarttime + "]";
 	}
-	
+
 	
 }

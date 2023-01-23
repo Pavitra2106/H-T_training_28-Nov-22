@@ -110,5 +110,13 @@ public class Employee {
 		public Employee() {
 		super();
 	}
+
+
+		@Override
+		public String toString() {
+			return "Employee [empid=" + empid + ", userid=" + userid + ", firstname=" + firstname + ", lastname="
+					+ lastname + ", email=" + email + ", salary=" + salary + ", job=" + job + "]";
+		}
+		
 		
 }

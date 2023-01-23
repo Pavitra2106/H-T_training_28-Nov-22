@@ -95,6 +95,11 @@ public class EmployeeServiceImpl implements IEmployeeService{
 			
 		existingEmployee.setSalary(totalsaly);
 		}
+		System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~ "+employee.getJob());
+		if(employee.getJob().equals("aborted")) {
+			System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~");
+			existingEmployee.setJob(null);
+			}
 		employeeRepo.save(existingEmployee);
 	}
 	

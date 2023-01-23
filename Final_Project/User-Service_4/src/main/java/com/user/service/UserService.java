@@ -64,24 +64,7 @@ public class UserService implements IUserService {
 	public User updateUserDetail(User user, Long id) {
 		User existingUser = iUserRepo.findById(id).orElseThrow(
 				() -> new ResourceNotFoundExceptionHandler("User", "id", id));
-		
-//		Set<Role> roles = new HashSet<>();	 
-//		 for (Role name : user.getRoles()) {
-//			 String rolename=name.getName().toString();
-//			if(rolename.equals("manager")) {
-//				Role adminRole = iRoleRepo.findByName(ERoles.manager)
-//						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-//				roles.add(adminRole);
-//			}
-//			else {
-//			
-//				Role userRole = iRoleRepo.findByName(ERoles.user)
-//						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-//				roles.add(userRole);
-//			}
-//
-//		}
-//		existingUser.setRoles(roles);
+	
 		existingUser.setFirstname(user.getFirstname());
 		existingUser.setLastname(user.getLastname());
 		existingUser.setEmail(user.getEmail());
@@ -97,8 +80,6 @@ public class UserService implements IUserService {
 				() -> new ResourceNotFoundExceptionHandler("User", "id", id));
 		
 		Set<Role> roles = new HashSet<>();	 
-//		 for (Role name : user.getRoles()) {
-			 //String rolename=role;
 			if(role.equals("manager")) {
 				Role adminRole = iRoleRepo.findByName(ERoles.manager)
 						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -110,8 +91,6 @@ public class UserService implements IUserService {
 						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 				roles.add(userRole);
 			}
-
-		//}
 		existingUser.setRoles(roles);
 		iUserRepo.save(existingUser);
 		return existingUser;
@@ -167,7 +146,7 @@ public class UserService implements IUserService {
 				//System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~");
 				String url ="http://EMPLOYEE-SERVICE/updateJobSalary/"+userid;
 				Employee employeedata= new Employee();
-				employeedata.setJob(null);
+				employeedata.setJob("aborted");
 		        restTemplate.put(url, employeedata);
 			}
 			// System.out.println("~~~~~~~~~5~~~~~~~~~~~~~~~~~~~~~~~~");
